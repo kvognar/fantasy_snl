@@ -9,7 +9,7 @@
 #  updated_at :datetime
 #
 
-class LeagueMemberships < ActiveRecord::Base
+class LeagueMembership < ActiveRecord::Base
   belongs_to(
     :member,
     class_name: "User",
@@ -17,4 +17,5 @@ class LeagueMemberships < ActiveRecord::Base
     primary_key: :id
   )
   belongs_to :league
+  
 end

@@ -16,4 +16,16 @@ class League < ActiveRecord::Base
     foreign_key: :creator_id,
     primary_key: :id
   )
+  
+  has_many :league_memberships
+  has_many :members, through: :league_memberships, source: :member
+  
+  after_create :add_creator_to_league
+  
+  private
+  
+  def add_creator_to_league
+    self.members << self.creator
+  end
+  
 end
