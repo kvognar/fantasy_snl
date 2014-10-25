@@ -11,4 +11,7 @@
 #
 
 class Scoring < ActiveRecord::Base
+  belongs_to :actor
+  belongs_to :scoring_type
+  belongs_to :episode
 end
