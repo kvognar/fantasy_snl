@@ -9,7 +9,10 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :league_memberships
-  has_many :teams
+  
+  validates :username, presence: true
+  
+  has_many :league_memberships, dependent: :destroy
+  has_many :teams, dependent: :destroy
   has_many :leagues, through: :league_memberships, source: :league
 end

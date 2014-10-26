@@ -9,7 +9,7 @@ describe User do
   it { should be_valid }
   
   it "has a username" do
-    expect(@user.username).to  eq("the rubin")
+    expect(@user.username).to eq("the rubin")
   end
   
   describe "leagues" do

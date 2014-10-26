@@ -10,4 +10,5 @@
 #
 
 class Episode < ActiveRecord::Base
+  has_many :scorings, dependent: :destroy
 end

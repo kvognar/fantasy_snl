@@ -10,6 +10,8 @@
 #
 
 class LeagueMembership < ActiveRecord::Base
+  validates :member, :league, presence: true
+  
   belongs_to(
     :member,
     class_name: "User",

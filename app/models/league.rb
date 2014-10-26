@@ -10,6 +10,8 @@
 #
 
 class League < ActiveRecord::Base
+  validates :name, :creator_id, presence: true
+  
   belongs_to(
     :creator,
     class_name: "User",
@@ -17,7 +19,7 @@ class League < ActiveRecord::Base
     primary_key: :id
   )
   
-  has_many :league_memberships
+  has_many :league_memberships, dependent: :destroy
   has_many :members, through: :league_memberships, source: :member
   
   after_create :add_creator_to_league

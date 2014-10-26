@@ -10,4 +10,10 @@
 #
 
 class Actor < ActiveRecord::Base
+  has_many :team_memberships, dependent: :destroy
+  has_many :scorings, dependent: :destroy
+  
+  def score
+    self.scorings.sum(:value)
+  end
 end
