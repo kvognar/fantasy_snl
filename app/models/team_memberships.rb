@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  actor_id   :integer          not null
-#  owner_id   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
+#  team_id    :integer          not null
 #
 
 class TeamMemberships < ActiveRecord::Base
@@ -17,4 +17,5 @@ class TeamMemberships < ActiveRecord::Base
     foreign_key: :owner_id,
     primary_key: :id
   )
+  belongs_to :team, counter_cache: :memberships_count
 end

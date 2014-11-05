@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  actor_id   :integer          not null
-#  owner_id   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
+#  team_id    :integer          not null
 #
 
 require 'test_helper'

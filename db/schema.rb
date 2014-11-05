@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025200413) do
+ActiveRecord::Schema.define(version: 20141030013517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,21 +76,22 @@ ActiveRecord::Schema.define(version: 20141025200413) do
 
   create_table "team_memberships", force: true do |t|
     t.integer  "actor_id",   null: false
-    t.integer  "owner_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id",    null: false
   end
 
-  add_index "team_memberships", ["actor_id", "owner_id"], name: "index_team_memberships_on_actor_id_and_owner_id", unique: true, using: :btree
   add_index "team_memberships", ["actor_id"], name: "index_team_memberships_on_actor_id", using: :btree
-  add_index "team_memberships", ["owner_id"], name: "index_team_memberships_on_owner_id", using: :btree
+  add_index "team_memberships", ["team_id", "actor_id"], name: "index_team_memberships_on_team_id_and_actor_id", unique: true, using: :btree
+  add_index "team_memberships", ["team_id"], name: "index_team_memberships_on_team_id", using: :btree
 
   create_table "teams", force: true do |t|
-    t.string   "name",       null: false
-    t.integer  "owner_id",   null: false
-    t.integer  "league_id",  null: false
+    t.string   "name",              null: false
+    t.integer  "owner_id",          null: false
+    t.integer  "league_id",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "memberships_count", null: false
   end
 
   add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree

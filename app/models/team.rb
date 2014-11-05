@@ -2,12 +2,13 @@
 #
 # Table name: teams
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  owner_id   :integer          not null
-#  league_id  :integer          not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer          not null, primary key
+#  name              :string(255)      not null
+#  owner_id          :integer          not null
+#  league_id         :integer          not null
+#  created_at        :datetime
+#  updated_at        :datetime
+#  memberships_count :integer          not null
 #
 
 class Team < ActiveRecord::Base
@@ -19,5 +20,6 @@ class Team < ActiveRecord::Base
   )
   
   belongs_to :league;
-  has_many :members, through: :league, source: :actor
+  has_many :team_memberships
+  has_many :members, through: :team_memberships, source: :actor
 end
