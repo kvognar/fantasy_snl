@@ -10,4 +10,5 @@
 #
 
 class ScoringType < ActiveRecord::Base
+  has_many :scorings
 end

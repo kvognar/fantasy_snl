@@ -8,16 +8,22 @@
 #  league_id         :integer          not null
 #  created_at        :datetime
 #  updated_at        :datetime
-#  memberships_count :integer          not null
+#  memberships_count :integer          default(0), not null
 #
 
+### counter cache may not be necessary
+
 class Team < ActiveRecord::Base
+  validates :name, :owner, :league, :memberships_count, presence: true
+  validates :memberships_count, numericality: { less_than_or_equal_to: 4 }
+  
   belongs_to(
     :owner,
     class_name: "User",
     foreign_key: :owner_id,
     primary_key: :id
   )
+  
   
   belongs_to :league;
   has_many :team_memberships

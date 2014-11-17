@@ -8,7 +8,7 @@
 #  league_id         :integer          not null
 #  created_at        :datetime
 #  updated_at        :datetime
-#  memberships_count :integer          not null
+#  memberships_count :integer          default(0), not null
 #
 
 require 'test_helper'

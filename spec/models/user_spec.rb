@@ -15,7 +15,7 @@ describe User do
     @user = User.create(username: "the rubin") 
     @other_user = User.create(username: "som")
   end
-  
+  subject { @user }
   it { should be_valid }
   
   it "has a username" do
