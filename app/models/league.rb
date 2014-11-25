@@ -68,9 +68,9 @@ class League < ActiveRecord::Base
   end
   
   def next_drafter
-    if self.drafting_drection == 0 || self.drafting_direction == self.members.size
+    self.current_drafter_id += self.drafting_direction
+    if self.drafting_drection == 0 || self.drafting_direction > self.members.size
       self.drafting_direction *= -1
-    else
       self.current_drafter_id += self.drafting_direction
     end
     self.save!

@@ -14,6 +14,6 @@ class Actor < ActiveRecord::Base
   has_many :scorings, dependent: :destroy
   
   def score
-    self.scorings.sum(:value)
+    self.scorings.includes(:scoring_type).sum(:value)
   end
 end

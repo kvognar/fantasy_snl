@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125024045) do
+ActiveRecord::Schema.define(version: 20141125030848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(version: 20141125024045) do
     t.integer  "episode_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "host",           null: false
   end
 
   add_index "episodes", ["air_date"], name: "index_episodes_on_air_date", using: :btree
+  add_index "episodes", ["host"], name: "index_episodes_on_host", using: :btree
 
   create_table "league_memberships", force: true do |t|
     t.integer  "member_id",  null: false
