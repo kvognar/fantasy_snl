@@ -24,6 +24,11 @@ class Team < ActiveRecord::Base
     primary_key: :id
   )
   
+  def draft(actor)
+    self.members << actor
+    self.league.next_drafter
+  end
+  
   
   belongs_to :league;
   has_many :team_memberships

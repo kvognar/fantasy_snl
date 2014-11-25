@@ -18,3 +18,18 @@ ScoringType.create(description: "Breaking (with actual laughter)", value: -1)
 ScoringType.create(description: "Additional display of skill", value: 3)
 ScoringType.create(description: "FCC violation", value: -2)
 
+[
+  "Vanessa Bayer",
+  "Aidy Bryant",
+  "Taran Killam",
+  "Kate McKinnon",
+  "Bobby Moynihan",
+  "Jay Pharoah",
+  "Cecily Strong",
+  "Kenan Thompson",
+  "Beck Bennett",
+  "Pete Davidson",
+  "Leslie Jones",
+  "Kyle Mooney",
+  "Sasheer Zamata"
+].map { |name| Actor.create(name: name) }
