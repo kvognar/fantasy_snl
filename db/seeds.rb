@@ -85,3 +85,123 @@ Scoring.create(scoring_type: weekend_char, actor: strong, episode: pratt)
 Scoring.create(scoring_type: weekend_char, actor: thompson, episode: pratt)
 
 2.times { Scoring.create(scoring_type: appear, actor: zamata, episode: pratt) }
+
+# Sarah Silverman episode
+
+Scoring.create(scoring_type: lead, actor: bayer, episode: silverman)
+Scoring.create(scoring_type: appear, actor: bayer, episode: silverman)
+
+2.times { Scoring.create(scoring_type: lead, actor: bennett, episode: silverman) }
+2.times { Scoring.create(scoring_type: appear, actor: bennett, episode: silverman) }
+
+2.times { Scoring.create(scoring_type: appear, actor: bryant, episode: silverman) }
+
+Scoring.create(scoring_type: lead, actor: killam, episode: silverman)
+4.times { Scoring.create(scoring_type: appear, actor: killam, episode: silverman) }
+
+3.times { Scoring.create(scoring_type: appear, actor: mckinnon, episode: silverman) }
+Scoring.create(scoring_type: weekend_char, actor: mckinnon, episode: silverman)
+Scoring.create(scoring_type: skill, actor: mckinnon, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: mooney, episode: silverman)
+Scoring.create(scoring_type: non_speaking, actor: mooney, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: moynihan, episode: silverman)
+Scoring.create(scoring_type: appear, actor: moynihan, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: pharoah, episode: silverman)
+Scoring.create(scoring_type: appear, actor: pharoah, episode: silverman)
+Scoring.create(scoring_type: live, actor: pharoah, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: strong, episode: silverman)
+Scoring.create(scoring_type: appear, actor: strong, episode: silverman)
+Scoring.create(scoring_type: non_speaking, actor: strong, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: thompson, episode: silverman)
+2.times { Scoring.create(scoring_type: appear, actor: thompson, episode: silverman) }
+Scoring.create(scoring_type: non_speaking, actor: thompson, episode: silverman)
+Scoring.create(scoring_type: weekend_char, actor: thompson, episode: silverman)
+
+Scoring.create(scoring_type: lead, actor: zamata, episode: silverman)
+Scoring.create(scoring_type: appear, actor: zamata, episode: silverman)
+
+# Bill Hader episode
+
+2.times { Scoring.create(scoring_type: appear, actor: bayer, episode: hader) }
+
+Scoring.create(scoring_type: lead, actor: bennett, episode: hader)
+3.times { Scoring.create(scoring_type: appear, actor: bennett, episode: hader) }
+
+2.times { Scoring.create(scoring_type: appear, actor: bryant, episode: hader) }
+
+Scoring.create(scoring_type: lead, actor: davidson, episode: hader)
+3.times { Scoring.create(scoring_type: appear, actor: davidson, episode: hader) }
+Scoring.create(scoring_type: non_speaking, actor: davidson, episode: hader)
+Scoring.create(scoring_type: weekend_self, actor: davidson, episode: hader)
+
+Scoring.create(scoring_type: lead, actor: killam, episode: hader)
+5.times { Scoring.create(scoring_type: appear, actor: killam, episode: hader) }
+
+2.times { Scoring.create(scoring_type: appear, actor: mckinnon, episode: hader) }
+
+Scoring.create(scoring_type: lead, actor: mooney, episode: silverman)
+2.times { Scoring.create(scoring_type: appear, actor: mooney, episode: silverman) }
+
+Scoring.create(scoring_type: lead, actor: moynihan, episode: silverman)
+2.times { Scoring.create(scoring_type: appear, actor: moynihan, episode: silverman) }
+Scoring.create(scoring_type: live, actor: moynihan, episode: silverman)
+
+2.times { Scoring.create(scoring_type: appear, actor: pharoah, episode: silverman) }
+
+Scoring.create(scoring_type: lead, actor: strong, episode: silverman)
+5.times { Scoring.create(scoring_type: appear, actor: strong, episode: silverman) }
+
+Scoring.create(scoring_type: appear, actor: thompson, episode: silverman)
+Scoring.create(scoring_type: non_speaking, actor: thompson, episode: silverman)
+
+2.times { Scoring.create(scoring_type: appear, actor: zamata, episode: silverman) }
+
+# Jim Carrey episode
+
+4.times { Scoring.create(scoring_type: appear, actor: bayer, episode: carrey) }
+Scoring.create(scoring_type: impersonate, actor: bayer, episode: carrey)
+Scoring.create(scoring_type: weekend_char, actor: bayer, episode: carrey)
+
+4.times { Scoring.create(scoring_type: appear, actor: bennett, episode: carrey) }
+Scoring.create(scoring_type: non_speaking, actor: bennett, episode: carrey)
+Scoring.create(scoring_type: impersonate, actor: bennett, episode: carrey)
+
+2.times { Scoring.create(scoring_type: appear, actor: bryant, episode: carrey) }
+
+2.times { Scoring.create(scoring_type: appear, actor: davidson, episode: carrey) }
+Scoring.create(scoring_type: non_speaking, actor: davidson, episode: carrey)
+
+Scoring.create(scoring_type: lead, actor: killam, episode: carrey)
+5.times { Scoring.create(scoring_type: appear, actor: killam, episode: carrey) }
+Scoring.create(scoring_type: impersonate, actor: killam, episode: carrey)
+
+Scoring.create(scoring_type: lead, actor: mckinnon, episode: carrey)
+Scoring.create(scoring_type: appear, actor: mckinnon, episode: carrey)
+Scoring.create(scoring_type: skill, actor: mckinnon, episode: carrey)
+
+4.times { Scoring.create(scoring_type: appear, actor: mooney, episode: carrey) }
+Scoring.create(scoring_type: impersonate, actor: mooney, episode: carrey)
+
+4.times { Scoring.create(scoring_type: appear, actor: moynihan, episode: carrey) }
+Scoring.create(scoring_type: impersonate, actor: moynihan, episode: carrey)
+Scoring.create(scoring_type: weekend_char, actor: moynihan, episode: carrey)
+
+4.times { Scoring.create(scoring_type: appear, actor: pharoah, episode: carrey) }
+Scoring.create(scoring_type: non_speaking, actor: pharoah, episode: carrey)
+Scoring.create(scoring_type: impersonate, actor: pharoah, episode: carrey)
+
+6.times { Scoring.create(scoring_type: appear, actor: strong, episode: carrey) }
+Scoring.create(scoring_type: impersonate, actor: strong, episode: carrey)
+
+5.times { Scoring.create(scoring_type: appear, actor: thompson, episode: carrey) }
+Scoring.create(scoring_type: live, actor: thompson, episode: carrey)
+
+4.times { Scoring.create(scoring_type: appear, actor: zamata, episode: carrey) }
+
+Scoring.create(scoring_type: lead, actor: jones, episode: carrey)
+Scoring.create(scoring_type: appear, actor: jones, episode: carrey)
