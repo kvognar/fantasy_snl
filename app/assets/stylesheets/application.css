@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+.new-episode input {
+  display: block;
+  font-size: 16px;
+  border: none;
+}

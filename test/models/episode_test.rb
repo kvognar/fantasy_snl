@@ -7,6 +7,7 @@
 #  episode_number :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  host           :string(255)      not null
 #
 
 require 'test_helper'
