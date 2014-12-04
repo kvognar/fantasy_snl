@@ -17,6 +17,7 @@ weekend_self = ScoringType.create(description: "Appear in Weekend Update as them
 breaking = ScoringType.create(description: "Breaking (with actual laughter)", value: -1)
 skill = ScoringType.create(description: "Additional display of skill", value: 3)
 fcc = ScoringType.create(description: "FCC violation", value: -2)
+error = ScoringType.create!(description: "Error", value: -1 )
 
 
 bayer = Actor.create(name:"Vanessa Bayer")
@@ -32,6 +33,48 @@ davidson = Actor.create(name: "Pete Davidson")
 jones = Actor.create(name: "Leslie Jones")
 mooney = Actor.create(name: "Kyle Mooney")
 zamata = Actor.create(name: "Sasheer Zamata")
+
+jacob, tirumari, justin, hannah, rachel, brandon = %w[
+  Jacob Tirumari Justin Hannah Rachel Brandon
+  ].map do |name|
+    User.create(username: name)
+end
+
+league = League.create(name: "Alpha Squad", creator: jacob)
+
+User.all.each do |user|
+  Team.create(owner_id: user.id, name: "Team #{user.username}", league: league)
+end
+
+#team jacob
+[mckinnon, thompson, killam, zamata].each do |actor|
+  jacob.teams.first.members << actor
+end
+
+#team tirumari
+[moynihan, bryant, killam, mooney].each do |actor|
+  tirumari.teams.first.members << actor
+end
+
+#team justin
+[pharoah, bayer, moynihan, davidson].each do |actor|
+  justin.teams.first.members << actor
+end
+
+#team hannah
+[pharoah, bayer, moynihan, davidson].each do |actor|
+  hannah.teams.first.members << actor
+end
+
+#team rachel
+[strong, zamata, bennett, mooney].each do |actor|
+  rachel.teams.first.members << actor
+end
+
+#team brandon
+[thompson, davidson, strong, pharoah].each do |actor|
+  brandon.teams.first.members << actor
+end
 
 pratt, silverman, hader, carrey, rock, harrelson, diaz = [
   ["Chris Pratt", Date.new(2014, 9, 27)],
@@ -205,3 +248,51 @@ Scoring.create(scoring_type: live, actor: thompson, episode: carrey)
 
 Scoring.create(scoring_type: lead, actor: jones, episode: carrey)
 Scoring.create(scoring_type: appear, actor: jones, episode: carrey)
+
+# Chris Rock episode
+
+# Bayer: 1/1/0  ER
+# Bennett: 1/3/1
+# Bryant: 0/4/0
+# Davidson: 0/0/1  U!
+# Killam: 0/5/0
+# McKinnon: 1/4/0
+# Mooney: 2/2/0
+# Moynihan: 2/1/0
+# Pharaoh: 0/2/2, U
+# Strong: 2/1/0, LFNY
+# Thompson: 0/5/0, U
+# Zameta: 1/3/0
+# Jones: 1/2/1, ER
+
+# Woody Harrelson episode
+
+# Bayer: 0/2/1
+#         Bennett: 0/4/1
+#         Bryant: 0/2/0
+#         Davidson: 1/0/1
+#         Killam: 1/5/0 LFNY U
+#         McKinnon: 1/2/0
+#         Mooney: 0/3/1
+#         Moynihan: 0/4/0 E
+#         Pharaoh: 1/2/0 LFNY
+#         Thompson: 0/6/0
+#         Zameta: 0/2/0
+#         Jones: 0/3/0 U!
+#         Strong: 0/2/0
+
+# Cameron Diaz episode
+
+# Bayer: 2/4/0
+# Bennett: 1/3/0
+# Bryant: 1/4/0
+# Davidson: 0/1/1
+# Killam: 0/2/0 U
+# McKinnon: 1/4/0 U
+# Mooney: 2/2/0 LFNY
+# Moynihan: 0/2/0 LFNY
+# Pharaoh: 1/2/0 LFNY
+# Strong: 1/2/0 U
+# Thompson: 2/4/0 LFNY
+# Zameta: 0/3/0
+# Jones: 1/2/0

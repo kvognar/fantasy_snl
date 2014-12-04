@@ -25,8 +25,13 @@ class Team < ActiveRecord::Base
   )
   
   def draft(actor)
+    raise "team is full" if memberships_count >= 4
     self.members << actor
     self.league.next_drafter
+  end
+  
+  def score
+    self.members.map { |actor| actor.score }.inject(:+)
   end
   
   

@@ -50,3 +50,7 @@ group :development, :test do
 end
 
 gem 'haml'
+gem 'slim'
+
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'

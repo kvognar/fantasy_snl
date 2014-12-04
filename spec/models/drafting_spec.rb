@@ -43,7 +43,7 @@ describe Team do
     
     it "should allow only four members per team" do
       4.times do |i|
-        membership = TeamMembership.create(team: @team, actor: @actors[i])
+        @team.draft(@actors[i])
       end
       
       expect(TeamMembership.count).to eq(4)
@@ -51,7 +51,7 @@ describe Team do
       expect(@team).to be_valid
       expect(@team.memberships_count).to eq(4)
       
-      expect { TeamMembership.create!(team: @team, actor: @actors[5]) }.to raise_error
+      expect { @team.draft(@actors[5]) }.to raise_error
 
       
     end

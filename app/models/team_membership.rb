@@ -12,8 +12,8 @@
 class TeamMembership < ActiveRecord::Base
   validates :actor, :team, presence: true
   validates :actor_id, uniqueness: { scope: :team_id }
-  validate :team_is_not_full, on: :create
-  validate :owner_has_current_turn, on: :create
+  # validate :team_is_not_full, on: :create
+  # validate :owner_has_current_turn, on: :create
   
   belongs_to :actor
   belongs_to(
