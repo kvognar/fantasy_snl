@@ -18,8 +18,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ body {
+   margin: 20px;
+ }
+
 .new-episode input {
   display: block;
   font-size: 16px;
-  border: none;
+}
+.actor-scores {
+  margin-left: 20px;
 }

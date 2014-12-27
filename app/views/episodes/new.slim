@@ -1,0 +1,18 @@
+h1 New episode
+form.new-episode action= "#{episodes_path}" method= "post"
+  input type= "hidden" value= form_authenticity_token name= "authenticity_token"
+  label for= "air_date" Air date
+  input#air_date type= "date" name= "episode[air_date]"
+
+  label for= "host" Host
+  input#host type= "text" name= "episode[host]"
+
+  - @actors.each do |actor|
+    li= actor.name
+    .actor-scores
+      - @scoring_types.each do |type|
+        label for= "#{type.description}_#{actor.id}" =type.description
+        input id= "#{type.description}_#{actor.id}" type= "number" name= "scores[actors][#{actor.id}][scoring_types][#{type.id}][count]" value= 0 min= 0
+
+
+  input type= "submit"
