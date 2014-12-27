@@ -12,8 +12,12 @@
 class Actor < ActiveRecord::Base
   has_many :team_memberships, dependent: :destroy
   has_many :scorings, dependent: :destroy
-  
+
   def score
     self.scorings.includes(:scoring_type).sum(:value)
+  end
+
+  def score_by_episode(episode_id)
+    self.scorings.where(episode_id: episode_id).includes(:scoring_type).sum(:value)
   end
 end

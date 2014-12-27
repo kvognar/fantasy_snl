@@ -1,0 +1,6 @@
+h1 = @episode.host
+
+ul.actors
+  - @actors.each do |actor|
+    li.actor-scores
+      = "#{actor.name}: #{actor.score_by_episode(@episode.id)}"
