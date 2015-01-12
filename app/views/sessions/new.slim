@@ -1,0 +1,12 @@
+h1.sign-in Sign In
+
+form.sign-in-form action=session_path method="post"
+  input type="hidden" name="authenticity_token" value=form_authenticity_token
+
+  label for="user-username" Username
+  input.form-control#user-username name="user[username]" type="text"
+
+  label for="user-password" Password
+  input.form-control#user-password name="user[password]" type="password"
+  
+  input type="submit"

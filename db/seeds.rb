@@ -37,8 +37,10 @@ zamata = Actor.create(name: "Sasheer Zamata")
 jacob, tirumari, justin, hannah, rachel, brandon = %w[
   Jacob Tirumari Justin Hannah Rachel Brandon
   ].map do |name|
-    User.create(username: name)
+    User.create!(username: name, password: 'widdershins')
 end
+
+jacob.update_attributes(is_admin: true)
 
 league = League.create(name: "Alpha Squad", creator: jacob)
 
