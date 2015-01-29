@@ -1,6 +1,19 @@
+- if current_user && current_user.is_admin?
+  -if @episode.writeup.nil?
+    = link_to "Create writeup", new_writeup_url(episode_id: @episode.id)
+  -else
+    = link_to "Edit writeup", edit_writeup_url(@episode.writeup)
+
 h1 = @episode.host
 
-ul.actors
-  - @actors.each do |actor|
-    li.actor-scores
-      = "#{actor.name}: #{actor.score_by_episode(@episode.id)}"
+-unless @episode.writeup.nil?
+  .writeup
+    h2.writeup-title= @episode.writeup.title
+    .writeup-body= @episode.writeup.body
+
+.scores
+  h3 Scores
+  ul.actors
+    - @actors.each do |actor|
+      li.actor-scores
+        = "#{actor.name}: #{actor.score_by_episode(@episode.id)}"

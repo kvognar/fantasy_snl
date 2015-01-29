@@ -12,6 +12,7 @@
 
 class Episode < ActiveRecord::Base
   has_many :scorings, dependent: :destroy
+  has_one :writeup
   validates :air_date, :host, presence: true
   validates :air_date, uniqueness: true
 end

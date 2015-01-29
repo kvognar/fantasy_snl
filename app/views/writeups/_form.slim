@@ -1,0 +1,10 @@
+-action = method == "post" ? writeups_path : writeup_path(writeup)
+
+form.writeup-form action="#{action}" method="post"
+  input type="hidden" value= form_authenticity_token name="authenticity_token"
+  input type="hidden" name="_method" value=method
+  input type="hidden" value= writeup.episode_id name="writeup[episode_id]"
+  input.form-control type="text" name="writeup[title]" placeholder="Title" value=writeup.title
+  textarea.form-control name="writeup[body]" placeholder="Tell us about it."
+    = writeup.body
+  input.form-control type="submit"

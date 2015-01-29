@@ -1,0 +1,2 @@
+h1 = "Edit writeup for #{@writeup.episode.air_date}: #{@writeup.episode.host}"
+= render partial: 'form', locals: {writeup: @writeup, method: "put"}
