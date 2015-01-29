@@ -14,5 +14,8 @@ nav.navbar-inverse role="navigation"
         -else
           a href=new_session_path Sign In
       -if signed_in?
+        -if current_user.is_admin?
+          li
+            =link_to "New Episode", new_episode_path
         li
           =link_to "Sign Out", session_url, method: :delete

@@ -2,10 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  username   :string(255)      not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  username      :string(255)      not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#  password_hash :string(255)      not null
+#  session_token :string(255)      not null
+#  is_admin      :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'
