@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token
 
-  has_many :league_memberships, dependent: :destroy
+  has_many :league_memberships, foreign_key: :member_id, dependent: :destroy
   has_many :teams, dependent: :destroy, foreign_key: :owner_id
   has_many :leagues, through: :league_memberships, source: :league
 
