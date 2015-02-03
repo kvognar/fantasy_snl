@@ -1,8 +1,8 @@
 Necessary Pages for FSNL
 
 EPISODE pages:
-- Individual cast member scores (with links to their individual pages)
-- My write-up (the ones I’ve been posting to Tumblr, which will soon relocate to this site)
+- ~~Individual cast member scores (with links to their individual pages)~~
+- ~~My write-up (the ones I’ve been posting to Tumblr, which will soon relocate to this site)~~
 - Photos from the episode
 * Link(s) to my favorite sketch(es)
 

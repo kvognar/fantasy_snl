@@ -1,3 +1,8 @@
 h1= @actor.name
 
-h3= "#{@actor.score}"
+h3= "Running score: #{@actor.score}"
+
+.scores
+  - @episodes.each do |episode|
+    h4.episode-host = "#{episode.host} (#{episode.air_date})"
+    = render partial: "scorings/breakdown", locals: { actor: @actor, scoring_types: @scoring_types, episode: episode, scorings: @actor.scorings.select { |s| s.episode == episode }}

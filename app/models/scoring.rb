@@ -12,8 +12,10 @@
 
 class Scoring < ActiveRecord::Base
   validates :actor, :scoring_type, :episode, presence: true
-  
+
   belongs_to :actor
   belongs_to :scoring_type
   belongs_to :episode
+
+  delegate :value, to: :scoring_type
 end

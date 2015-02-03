@@ -1,0 +1,9 @@
+table.scoring_breakdown
+  tr.scoring_types
+    - scoring_types.each do |scoring_type|
+      td class="scoring_#{scoring_type.symbol}" title="#{scoring_type.description} (#{pluralize(scoring_type.value, 'point')})" = scoring_type.symbol
+    td class="scoring_total" title="Total" Total
+  tr.scores
+    -scoring_types.each do |scoring_type|
+      td = scorings.select{ |s| s.scoring_type == scoring_type }.map{ |s| s.value.to_i }.inject(:+)
+    td = actor.score_by_episode(episode.id)

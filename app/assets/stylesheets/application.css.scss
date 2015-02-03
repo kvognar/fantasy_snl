@@ -29,3 +29,13 @@
 .actor-scores {
   margin-left: 20px;
 }
+
+.scoring_breakdown {
+  border: 1px solid black;
+  td {
+    border: 1px solid black;
+    min-width: 50px;
+    text-align: center;
+    padding: 5px;
+  }
+}
