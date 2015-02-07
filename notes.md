@@ -7,7 +7,7 @@ EPISODE pages:
 * Link(s) to my favorite sketch(es)
 
 CAST MEMBER pages:
-- Their individual scores by episode (with score breakdown in the x/y/z + whatever format, with links to the episode page)
+- ~~Their individual scores by episode (with score breakdown in the x/y/z + whatever format, with links to the episode page)~~
 - Brief bio + photos
 * Videos of choice sketches from them this season
 * Something to indicate if they were the “winner” of a given episode
