@@ -3,9 +3,5 @@ h1 =@league.name
 ul
   -@teams.each do |team|
     li
-      ="#{team.name}: #{team.score}"
-
-      ul.team-actors
-        - team.members.each do |actor|
-          li.team-actor
-            = actor.name
+      ="#{link_to h(team.name), team_url(team)}: #{team.score}".html_safe
+      = render partial: 'teams/cast', locals: { members: team.members }

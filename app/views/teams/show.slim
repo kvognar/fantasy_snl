@@ -1,0 +1,8 @@
+h1 = @team.name
+h3 = "#{@team.score} points"
+
+= render partial: 'cast', locals: { members: @team.members }
+
+- @episodes.each do |episode|
+  h3 = "#{episode.host} (#{episode.air_date})"
+  = render partial: 'scorings/breakdown', locals: { scoring_types: @scoring_types, scorings: episode_scorings(episode), total: episode_total(episode) }

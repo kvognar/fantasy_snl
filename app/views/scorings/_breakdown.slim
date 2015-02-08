@@ -6,4 +6,4 @@ table.scoring_breakdown
   tr.scores
     -scoring_types.each do |scoring_type|
       td = scorings.select{ |s| s.scoring_type == scoring_type }.map{ |s| s.value.to_i }.inject(:+)
-    td = actor.score_by_episode(episode.id)
+    td = total

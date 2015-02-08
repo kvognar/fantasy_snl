@@ -14,4 +14,9 @@ class ActorsController < ApplicationController
   def edit
     @actor = Actor.find(params[:id])
   end
+
+  def episode_scorings(episode)
+    @actor.scorings.where(episode: episode)
+  end
+
 end
