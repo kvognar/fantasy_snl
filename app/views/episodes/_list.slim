@@ -1,0 +1,7 @@
+.episode-list-container
+  h3 Episode List
+
+  ul.episode-list
+    - @episodes.each do |episode|
+      li.episode-link
+        = link_to "#{episode.air_date}: #{episode.host}", episode_url(episode)

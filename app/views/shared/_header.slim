@@ -5,10 +5,6 @@ nav.navbar-inverse role="navigation"
 
     ul.nav.navbar-nav.navbar-right
       li
-        a href=episodes_url Episodes
-      li
-        a href=actors_url Actors
-      li
         -if signed_in?
           a href=user_path(current_user) =current_user.username
         -else

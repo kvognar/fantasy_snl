@@ -4,10 +4,6 @@ class EpisodesController < ApplicationController
     @scoring_types = ScoringType.all
   end
 
-  def index
-    @episodes = Episode.all
-  end
-
   def create
     Episode.transaction do
       @episode = Episode.create!(episode_params)

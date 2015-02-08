@@ -18,16 +18,16 @@ And then of course a table of contents page for each. Episodes and cast members.
 LEAGUES
 MY TEAM:
 - Photos of your team with their current point totals (and links to their individual cast member pages)
-- It would also show your points from episode by episode
+- ~~It would also show your points from episode by episode~~
 
 MY LEAGUE:
-- A list of all the players with all their teams, ordered from most points to least points. All that’s there is their team and their current point total. We don’t need every episode or every cast member, that’s what the individual pages are for.
+- ~~A list of all the players with all their teams, ordered from most points to least points. All that’s there is their team and their current point total. We don’t need every episode or every cast member, that’s what the individual pages are for.~~
 - Photos of their cast members.
-- Links to their individual MY TEAM page with the point breakdowns
+- ~~Links to their individual MY TEAM page with the point breakdowns~~
 
 HOME PAGE:
-- Episode table of contents
-- Cast Member table of contents
+- ~~Episode table of contents~~
+- ~~Cast Member table of contents~~
 - Build Your Team
 - My League
 - My Team

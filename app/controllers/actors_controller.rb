@@ -7,10 +7,6 @@ class ActorsController < ApplicationController
     @scoring_types = ScoringType.all
   end
 
-  def index
-    @actors = Actor.includes(scorings: [:scoring_type, :episode]).all
-  end
-
   def edit
     @actor = Actor.find(params[:id])
   end
