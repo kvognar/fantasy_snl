@@ -14,7 +14,7 @@ class LeagueMembership < ActiveRecord::Base
   validates :member, :league, presence: true
   validate :league_is_unlocked, on: :create
   validate :league_is_not_full, on: :create
-  
+
   belongs_to(
     :member,
     class_name: "User",
@@ -22,19 +22,19 @@ class LeagueMembership < ActiveRecord::Base
     primary_key: :id
   )
   belongs_to :league
-  
+
   private
-  
+
   def league_is_unlocked
     if league.locked
       errors[:league] << "is locked"
     end
   end
-  
+
   def league_is_not_full
-    if league.members.size >= 4
+    if league.members.size >= 6
       errors[:league] << "is full"
     end
   end
-  
+
 end
