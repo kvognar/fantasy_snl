@@ -1,8 +1,11 @@
-h1= @actor.name
+#actor-profile
+  h1
+    = image_tag(@actor.image_url, class: "actor-image")
+    = @actor.name
 
-h3= "Running score: #{@actor.score}"
+  h3= "Running score: #{@actor.score}"
 
-.scores
-  - @episodes.each do |episode|
-    h4.episode-host = "#{episode.host} (#{episode.air_date})"
-    = render partial: "scorings/breakdown", locals: { scoring_types: @scoring_types, scorings: @actor.scorings.select { |s| s.episode == episode }, total: @actor.score_by_episode(episode.id) }
+  .scores
+    - @episodes.each do |episode|
+      h4.episode-host = "#{episode.host} (#{episode.air_date})"
+      = render partial: "scorings/breakdown", locals: { scoring_types: @scoring_types, scorings: @actor.scorings.select { |s| s.episode == episode }, total: @actor.score_by_episode(episode.id) }
