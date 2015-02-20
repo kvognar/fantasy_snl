@@ -15,4 +15,6 @@ class Episode < ActiveRecord::Base
   has_one :writeup
   validates :air_date, :host, presence: true
   validates :air_date, uniqueness: true
+
+  default_scope { order(air_date: :asc) }
 end

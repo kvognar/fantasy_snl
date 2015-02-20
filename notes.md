@@ -8,7 +8,7 @@ EPISODE pages:
 
 CAST MEMBER pages:
 - ~~Their individual scores by episode (with score breakdown in the x/y/z + whatever format, with links to the episode page)~~
-- Brief bio + photos
+- Brief bio + ~~photos~~
 * Videos of choice sketches from them this season
 * Something to indicate if they were the “winner” of a given episode
 
@@ -17,7 +17,7 @@ And then of course a table of contents page for each. Episodes and cast members.
 
 LEAGUES
 MY TEAM:
-- Photos of your team with their current point totals (and links to their individual cast member pages)
+- ~~Photos of your team~~ with their current point totals (and links to their individual cast member pages)
 - ~~It would also show your points from episode by episode~~
 
 MY LEAGUE:
