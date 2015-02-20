@@ -6,5 +6,6 @@ h1.welcome Live from New York, it's Fantasy Night!
     = render partial: 'teams/cast', locals: { members: @team.members }
   = "League: #{link_to h(@league.name), league_path(@league)}".html_safe
 
-= render partial: 'actors/list'
-= render partial: 'episodes/list'
+.lists-container.row
+  = render partial: 'episodes/list'
+  = render partial: 'actors/list'
