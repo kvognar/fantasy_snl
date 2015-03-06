@@ -18,16 +18,39 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- body {
-   margin: 20px;
+ .content {
+   margin: 4rem;
  }
 
-.new-episode input {
-  display: block;
-  font-size: 16px;
-}
-.actor-scores {
-  margin-left: 20px;
+.new-episode {
+  padding: 20px;
+
+  input {
+    font-size: 16px;
+  }
+  .episode-attributes {
+    margin: 2rem;
+  }
+  .actor-score-input {
+    .actor-score-header {
+      background-color: rgb(10, 10, 10);
+      padding: 10px;
+      border-radius: 4px;
+      color: white;
+      margin: 30px;
+      font-size: 6rem;
+      font-variant: small-caps;
+      span {
+        margin: 0 40px;
+      }
+    }
+  }
+  .actor-scores {
+    margin: 20px;
+  }
+  .btn-default {
+    width: 100%;
+  }
 }
 
 .scoring_breakdown {

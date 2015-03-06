@@ -22,7 +22,7 @@ MY TEAM:
 
 MY LEAGUE:
 - ~~A list of all the players with all their teams, ordered from most points to least points. All that’s there is their team and their current point total. We don’t need every episode or every cast member, that’s what the individual pages are for.~~
-- Photos of their cast members.
+- ~~Photos of their cast members.~~
 - ~~Links to their individual MY TEAM page with the point breakdowns~~
 
 HOME PAGE:
