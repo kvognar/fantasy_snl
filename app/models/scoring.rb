@@ -14,6 +14,8 @@
 class Scoring < ActiveRecord::Base
   validates :actor, :scoring_type, :episode, presence: true
 
+  scope :canonical, -> { where(team: nil) }
+
   belongs_to :actor
   belongs_to :scoring_type
   belongs_to :episode
