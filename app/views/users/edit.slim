@@ -1,0 +1,16 @@
+h1.page-header Change password
+
+form.sign-in-form action=user_path(@user) method="post"
+  input type="hidden" name="authenticity_token" value=form_authenticity_token
+  input type="hidden" name="_method" value="put"
+
+  label for="user-old-password" Old password
+  input.form-control#user-old-password name="user[old_password]" type="password"
+
+  label for="user-new-password" New password
+  input.form-control#user-new-password name="user[new_password]" type="password"
+
+  label for="user-confirm-password" Confirm password
+  input.form-control#user-confirm-password name="user[confirm_password]" type="password"
+
+  input.btn.btn-info type="submit"
