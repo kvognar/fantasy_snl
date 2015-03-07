@@ -11,6 +11,7 @@
 
 class Actor < ActiveRecord::Base
   has_many :team_memberships, dependent: :destroy
+  has_many :teams, through: :team_memberships, source: :team
   has_many :scorings, dependent: :destroy
 
   def score

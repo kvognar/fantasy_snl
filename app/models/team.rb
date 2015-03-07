@@ -16,25 +16,27 @@
 class Team < ActiveRecord::Base
   validates :name, :owner, :league, :memberships_count, presence: true
   validates :memberships_count, numericality: { less_than_or_equal_to: 4 }
-  
+
   belongs_to(
     :owner,
     class_name: "User",
     foreign_key: :owner_id,
     primary_key: :id
   )
-  
+
+  has_many :scorings, dependent: :destroy
+
   def draft(actor)
     raise "team is full" if memberships_count >= 4
     self.members << actor
     self.league.next_drafter
   end
-  
+
   def score
-    self.members.map { |actor| actor.score }.inject(:+)
+    self.scorings.includes(:scoring_type).sum(:value)
   end
-  
-  
+
+
   belongs_to :league;
   has_many :team_memberships
   has_many :members, through: :team_memberships, source: :actor

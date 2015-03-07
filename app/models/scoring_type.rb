@@ -7,6 +7,7 @@
 #  value       :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  symbol      :string(255)
 #
 
 class ScoringType < ActiveRecord::Base
