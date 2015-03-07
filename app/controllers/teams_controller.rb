@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.includes(members: { scorings: [:scoring_type, :episode] }).find(params[:id])
     @scoring_types = ScoringType.all
-    @scorings = @team.members.map(&:scorings).flatten
+    @scorings = @team.scorings
     @episodes = Episode.all
   end
 
@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def episode_total(episode)
-    episode_scorings(episode).map { |s| s.value.to_i }.inject(:+)
+    episode_scorings(episode).map { |s| s.value }.inject(:+)
   end
 
   helper_method :episode_scorings, :episode_total
