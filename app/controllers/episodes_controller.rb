@@ -18,7 +18,7 @@ class EpisodesController < ApplicationController
         end
       end
     end
-    render json: @episode
+    redirect_to @episode
   end
 
   def show
