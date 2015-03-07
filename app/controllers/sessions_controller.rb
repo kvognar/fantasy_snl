@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       sign_in!(@user)
       redirect_to root_url
     else
-      render :create
+      flash[:warning] = "I couldn't find you, sorry."
+      render :new
     end
   end
 
