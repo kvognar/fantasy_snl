@@ -9,6 +9,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  team_id         :integer
+#  canonical_id    :integer
 #
 
 class Scoring < ActiveRecord::Base
@@ -20,6 +21,8 @@ class Scoring < ActiveRecord::Base
   belongs_to :scoring_type
   belongs_to :episode
   belongs_to :team
+  belongs_to :canonical_scoring, class_name: 'Scoring', foreign_key: :canonical_id
+  has_many :dependent_scorings, class_name: 'Scoring', foreign_key: :canonical_id, dependent: :destroy
 
   delegate :value, to: :scoring_type
 

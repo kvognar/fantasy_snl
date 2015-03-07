@@ -9,6 +9,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  team_id         :integer
+#  canonical_id    :integer
 #
 
 require 'test_helper'

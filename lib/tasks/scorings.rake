@@ -15,7 +15,7 @@ def transfer_scorings
   Team.includes(members: [scorings: :scoring_type]).all.each do |team|
     team.members.each do |actor|
       actor.scorings.canonical.each do |scoring|
-        team.scorings.create(actor: actor, episode: scoring.episode, scoring_type: scoring.scoring_type)
+        team.scorings.create(actor: actor, episode: scoring.episode, scoring_type: scoring.scoring_type, canonical_id: scoring.id)
       end
     end
   end

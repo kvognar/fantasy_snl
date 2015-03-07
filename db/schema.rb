@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307044532) do
+ActiveRecord::Schema.define(version: 20150307181217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,9 +77,11 @@ ActiveRecord::Schema.define(version: 20150307044532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "team_id"
+    t.integer  "canonical_id"
   end
 
   add_index "scorings", ["actor_id"], name: "index_scorings_on_actor_id", using: :btree
+  add_index "scorings", ["canonical_id"], name: "index_scorings_on_canonical_id", using: :btree
   add_index "scorings", ["episode_id"], name: "index_scorings_on_episode_id", using: :btree
   add_index "scorings", ["scoring_type_id"], name: "index_scorings_on_scoring_type_id", using: :btree
   add_index "scorings", ["team_id"], name: "index_scorings_on_team_id", using: :btree
