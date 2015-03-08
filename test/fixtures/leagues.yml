@@ -11,6 +11,8 @@
 #  drafting           :boolean          default(FALSE), not null
 #  drafting_direction :integer          default(1), not null
 #  current_drafter_id :integer          default(1), not null
+#  invite_token       :string(255)
+#  drafting_order     :text             default([]), is an Array
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

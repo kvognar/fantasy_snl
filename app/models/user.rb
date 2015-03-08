@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :league_memberships, foreign_key: :member_id, dependent: :destroy
   has_many :teams, dependent: :destroy, foreign_key: :owner_id
   has_many :leagues, through: :league_memberships, source: :league
+  has_many :created_leagues, class_name: 'League', foreign_key: :creator_id
   has_many :writeups, foreign_key: :author_id
 
   attr_accessor :password
