@@ -40,6 +40,8 @@ gem 'pry-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'redcarpet'
+
 group :development do
   gem 'annotate'
   gem 'better_errors'

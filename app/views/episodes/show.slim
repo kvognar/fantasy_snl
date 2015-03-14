@@ -9,7 +9,7 @@ h1 = @episode.host
 -unless @episode.writeup.nil?
   .writeup
     h2.writeup-title= @episode.writeup.title
-    .writeup-body= @episode.writeup.body
+    .writeup-body= markdown @episode.writeup.body
 
 .scores
   h3 Scores
