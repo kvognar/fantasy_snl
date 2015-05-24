@@ -1,2 +1,24 @@
 .drafting
-  = "The current drafter is #{@league.current_drafter.username}!"
+  = "The current drafter is #{ @league.current_drafter.username }!"
+
+  - if @league.current_drafter == current_user
+    - drafting_team = @league.teams.find_by_owner_id(@league.current_drafter)
+    - if drafting_team.nil?
+      = render partial: 'teams/new'
+    - else
+      h2.draft-prompt = "Select an actor!"
+      form.drafting-form action=team_memberships_path method="post"
+        input type="hidden" name="drafting[league_id]" value=@league.id
+        input type="hidden" name="authenticity_token" value=form_authenticity_token
+        - @league.available_actors.each do |actor, slots|
+          .actor-option
+            input [
+            type="radio"
+            name="drafting[actor_id]"
+            value=actor.id
+            id="actor_#{actor.id}"
+            disabled=(slots==0) ]
+            label for="actor_#{actor.id}" = image_tag(actor.image_url)
+            .actor-name = "#{actor.name} (#{slots})"
+
+        input.btn.btn-default type="submit"

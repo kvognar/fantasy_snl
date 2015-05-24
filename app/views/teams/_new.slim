@@ -1,0 +1,10 @@
+.new-team-form
+  form.team-form action=teams_url method="post"
+    input type="hidden" value=form_authenticity_token name="authenticity_token"
+    input type="hidden" name="_method" value="post"
+    input type="hidden" name="team[league_id]" value=@league.id
+    input type="hidden" name="league[invite_token]" value=@league.invite_token
+    input.form-control type="text" name="team[name]" placeholder="Give your team a name."
+    .whisper
+      | (You can rename it later)
+    button.btn.btn-default type="submit" Create team

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :league_memberships, only: :create
   resources :actors
   resources :teams
+  resources :team_memberships, only: :create
   resources :writeups, only: [:new, :create, :edit, :update, :destroy]
   resource :session, only: [:new, :create, :destroy]
 

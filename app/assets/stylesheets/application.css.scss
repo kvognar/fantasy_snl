@@ -118,3 +118,24 @@
     display: block;
   }
 }
+
+.drafting {
+  .drafting-form {
+    .actor-option {
+      display: inline-block;
+      width: 180px;
+      input {
+        display: none;
+      }
+      label {
+        border: solid white;
+      }
+      input[type=radio]:disabled + label {
+        opacity: 0.25;
+      }
+      input[type=radio]:checked + label {
+        border: solid gold;
+      }
+    }
+  }
+}

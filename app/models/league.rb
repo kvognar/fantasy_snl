@@ -36,13 +36,10 @@ class League < ActiveRecord::Base
 
   def available_actors
     #each actor can be drafted twice per league
-    result = {}
-    Actor.all.each do |actor|
-      result[actor.id] = 2
-    end
+    result = Hash[Actor.all.map { |actor| [actor, 2] }]
 
     draftings.each do |drafting|
-      result[drafting.actor_id] -= 1
+      result[drafting.actor] -= 1
     end
     result
 
@@ -77,11 +74,18 @@ class League < ActiveRecord::Base
 
   def next_drafter
     self.current_drafter_id += self.drafting_direction
-    if self.drafting_drection == 0 || self.drafting_direction > self.members.size
+    if self.current_drafter_id == -1 || self.current_drafter_id == self.members.size
       self.drafting_direction *= -1
       self.current_drafter_id += self.drafting_direction
     end
     self.save!
+    end_drafting_if_finished
+  end
+
+  def end_drafting_if_finished
+    if Team.find_by(owner: current_drafter, league_id: self.id).members.size == 4
+      self.update_attributes(drafting: false)
+    end
   end
 
   private
