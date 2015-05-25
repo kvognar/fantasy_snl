@@ -17,7 +17,7 @@
             name="drafting[actor_id]"
             value=actor.id
             id="actor_#{actor.id}"
-            disabled=(slots==0) ]
+            disabled=(slots==0 || drafting_team.members.include?(actor)) ]
             label for="actor_#{actor.id}" = image_tag(actor.image_url)
             .actor-name = "#{actor.name} (#{slots})"
 
