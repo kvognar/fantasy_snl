@@ -15,12 +15,13 @@ require 'spec_helper'
 
 describe User do
   before do 
-    @user = User.create(username: "the rubin") 
-    @other_user = User.create(username: "som")
+    @user = build(:user, username: "the rubin")
+    @som = build(:user, username: "som")
   end
-  subject { @user }
-  it { should be_valid }
-  
+  it { should validate_presence_of :username }
+  it { should validate_uniqueness_of :username }
+  it { should validate_presence_of :password_hash }
+
   it "has a username" do
     expect(@user.username).to eq("the rubin")
   end
