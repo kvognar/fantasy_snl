@@ -14,6 +14,8 @@ class Actor < ActiveRecord::Base
   has_many :teams, through: :team_memberships, source: :team
   has_many :scorings, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: true
+
   def score
     self.scorings.canonical.includes(:scoring_type).sum(:value)
   end

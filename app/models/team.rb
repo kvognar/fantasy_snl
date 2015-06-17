@@ -37,7 +37,7 @@ class Team < ActiveRecord::Base
   end
 
 
-  belongs_to :league;
+  belongs_to :league
   has_many :team_memberships
   has_many :members, through: :team_memberships, source: :actor
 end
