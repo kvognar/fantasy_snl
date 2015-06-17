@@ -13,48 +13,31 @@
 
 require 'spec_helper'
 
+
 describe User do
-  before do 
-    @user = build(:user, username: "the rubin")
-    @som = build(:user, username: "som")
+  before :each do
+    @user = create(:user, username: "the rubin", password: "mxyzptlk")
+    @other_user = create(:user, username: "som")
   end
   it { should validate_presence_of :username }
   it { should validate_uniqueness_of :username }
   it { should validate_presence_of :password_hash }
+  it { should have_many :league_memberships }
+  it { should have_many :teams }
+  it { should have_many :leagues }
+  it { should have_many :created_leagues }
+  it { should have_many :writeups }
 
-  it "has a username" do
-    expect(@user.username).to eq("the rubin")
+  describe '#find_by_credentials' do
+    it 'should find a user by their password' do
+      expect(User.find_by_credentials(username: 'the rubin', password: 'mxyzptlk')).to eq(@user)
+    end
+
+    it 'should return nil if the username or password is wrong' do
+      expect(User.find_by_credentials(username: 'humbug', password: 'nonsense')).to eq(nil)
+      expect(User.find_by_credentials(username: 'the rubin', password: 'kltpzyxm')).to eq(nil)
+    end
   end
-  
-  describe "leagues" do
-    before do 
-      @league = League.create(name: "Rubin Rage", creator: @user)
-    end
-    
-    it "should be a member of created leagues" do
-      expect(@league.members).to include(@user)
-    end
-    
-    it "should add new users to leagues" do
-      @league.members << @other_user
-      expect(@league.members).to include(@other_user)
-    end
-    
-    
-    describe "team ownership" do
-      before do
-        @team = Team.create(name: "Rubin and the Rubins", owner: @user,
-                            league: @league)
-      end
-    
-      it "should own a team" do
-        expect(@team.owner).to eq(@user)
-      end
-    
-    end
-    
-  end
-  
-    
-  
+
+
 end
