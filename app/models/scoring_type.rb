@@ -11,5 +11,6 @@
 #
 
 class ScoringType < ActiveRecord::Base
+  validates :description, :value, :symbol, presence: true
   has_many :scorings
 end
