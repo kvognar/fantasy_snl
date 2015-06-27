@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308021530) do
+ActiveRecord::Schema.define(version: 20150617163153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,16 @@ ActiveRecord::Schema.define(version: 20150308021530) do
   add_index "league_memberships", ["member_id"], name: "index_league_memberships_on_member_id", using: :btree
 
   create_table "leagues", force: true do |t|
-    t.string   "name",                               null: false
-    t.integer  "creator_id",                         null: false
+    t.string   "name",                                  null: false
+    t.integer  "creator_id",                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "locked",             default: false, null: false
-    t.boolean  "drafting",           default: false, null: false
-    t.integer  "drafting_direction", default: 1,     null: false
-    t.integer  "current_drafter_id", default: 1,     null: false
+    t.boolean  "locked",                default: false, null: false
+    t.boolean  "drafting",              default: false, null: false
+    t.integer  "drafting_direction",    default: 0,     null: false
+    t.integer  "current_drafter_index", default: 1,     null: false
     t.string   "invite_token"
-    t.text     "drafting_order",     default: [],                 array: true
+    t.text     "drafting_order",        default: [],                 array: true
   end
 
   add_index "leagues", ["creator_id"], name: "index_leagues_on_creator_id", using: :btree
