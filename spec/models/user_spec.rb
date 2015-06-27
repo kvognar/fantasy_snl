@@ -39,5 +39,13 @@ describe User do
     end
   end
 
+  describe '#resets_session_token!' do
+    it "resets the user's session token" do
+      token = @user.session_token
+      @user.reset_session_token!
+      expect(@user.session_token).to_not eq(token)
+    end
+  end
+
 
 end
