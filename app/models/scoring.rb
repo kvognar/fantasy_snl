@@ -28,9 +28,16 @@ class Scoring < ActiveRecord::Base
 
   after_create :allot_scorings_to_teams, if: Proc.new { |scoring| scoring.team.nil? }
 
+  private
+
   def allot_scorings_to_teams
     self.actor.teams.each do |team|
-      team.scorings << Scoring.new(actor: self.actor, scoring_type: self.scoring_type, episode: self.episode)
+      team.scorings << Scoring.new(
+          actor: self.actor,
+          scoring_type: self.scoring_type,
+          episode: self.episode,
+          canonical_scoring: self
+      )
     end
   end
 end
