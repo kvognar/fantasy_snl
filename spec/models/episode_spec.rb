@@ -6,8 +6,8 @@ describe Episode do
   it { should have_many :scorings }
   it { should have_one :writeup }
   it 'should have a default scope by air date' do
-    late_episode = create(:episode, air_date: 1.day.from_now)
-    early_episode = create(:episode, air_date: 1.day.ago)
+    late_episode = create(:episode, air_date: 7.days.from_now)
+    early_episode = create(:episode, air_date: 7.days.ago)
     now_episode = create(:episode, air_date: Time.now)
 
     expect(Episode.all).to eq [early_episode, now_episode, late_episode]
