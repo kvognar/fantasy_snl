@@ -13,47 +13,39 @@
 
 require 'spec_helper'
 
+
 describe User do
-  before do 
-    @user = User.create(username: "the rubin") 
-    @other_user = User.create(username: "som")
+  before :each do
+    @user = create(:user, username: "the rubin", password: "mxyzptlk")
+    @other_user = create(:user, username: "som")
   end
-  subject { @user }
-  it { should be_valid }
-  
-  it "has a username" do
-    expect(@user.username).to eq("the rubin")
+  it { should validate_presence_of :username }
+  it { should validate_uniqueness_of :username }
+  it { should validate_presence_of :password_hash }
+  it { should have_many :league_memberships }
+  it { should have_many :teams }
+  it { should have_many :leagues }
+  it { should have_many :created_leagues }
+  it { should have_many :writeups }
+
+  describe '#find_by_credentials' do
+    it 'should find a user by their password' do
+      expect(User.find_by_credentials(username: 'the rubin', password: 'mxyzptlk')).to eq(@user)
+    end
+
+    it 'should return nil if the username or password is wrong' do
+      expect(User.find_by_credentials(username: 'humbug', password: 'nonsense')).to eq(nil)
+      expect(User.find_by_credentials(username: 'the rubin', password: 'kltpzyxm')).to eq(nil)
+    end
   end
-  
-  describe "leagues" do
-    before do 
-      @league = League.create(name: "Rubin Rage", creator: @user)
+
+  describe '#resets_session_token!' do
+    it "resets the user's session token" do
+      token = @user.session_token
+      @user.reset_session_token!
+      expect(@user.session_token).to_not eq(token)
     end
-    
-    it "should be a member of created leagues" do
-      expect(@league.members).to include(@user)
-    end
-    
-    it "should add new users to leagues" do
-      @league.members << @other_user
-      expect(@league.members).to include(@other_user)
-    end
-    
-    
-    describe "team ownership" do
-      before do
-        @team = Team.create(name: "Rubin and the Rubins", owner: @user,
-                            league: @league)
-      end
-    
-      it "should own a team" do
-        expect(@team.owner).to eq(@user)
-      end
-    
-    end
-    
   end
-  
-    
-  
+
+
 end

@@ -50,7 +50,13 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 4.4.0"
+  gem "database_cleaner"
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'slim'

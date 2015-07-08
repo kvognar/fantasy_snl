@@ -8,11 +8,8 @@ class ActorsController < ApplicationController
   end
 
   def edit
+    #TODO: this
     @actor = Actor.find(params[:id])
-  end
-
-  def episode_scorings(episode)
-    @actor.scorings.where(episode: episode)
   end
 
 end

@@ -1,5 +1,8 @@
 h1 =@league.name
 
+= render partial: 'unlocked' unless @league.locked
+= render partial: 'drafting' if @league.drafting
+
 ul
   -@teams.each do |team|
     li

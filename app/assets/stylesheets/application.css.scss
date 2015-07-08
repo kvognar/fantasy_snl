@@ -105,3 +105,49 @@
     margin: 1rem 0;
   }
 }
+
+.league-form {
+  input[type="text"] {
+    font-size: 6rem;
+    height: 10rem;
+    text-align: center;
+  }
+
+  button[type="submit"] {
+    margin: 1rem auto;
+    display: block;
+  }
+}
+
+.drafting {
+  .drafting-form {
+    .actor-option {
+      display: inline-block;
+      width: 180px;
+      input {
+        display: none;
+      }
+      label {
+        border: solid white;
+      }
+      input[type=radio]:disabled + label {
+        opacity: 0.25;
+      }
+      input[type=radio]:checked + label {
+        border: solid gold;
+      }
+    }
+  }
+
+  .drafting-order {
+    span {
+      padding: 0 1rem;
+    }
+    .current-drafter {
+      font-weight: bold;
+    }
+    .waiting-drafter {
+      font-weight: lighter;
+    }
+  }
+}

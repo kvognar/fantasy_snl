@@ -1,0 +1,10 @@
+.current-member-list
+  = "Current members: #{ @league.members.map { |m| link_to h(m.username), user_path(m) }.join(', ') }".html_safe
+.invite-info = "Invite others to #{ @league.name } with the following link: #{ league_url(invite_token: @league.invite_token) }"
+- if params[:invite_token] == @league.invite_token && !@league.members.include?(current_user)
+  .league-join-container
+    = "Welcome to #{@league.name}!"
+    = button_to "Join", league_memberships_path, class: "btn btn-info", params: {invite_token: params[:invite_token], league_id: @league.id}
+
+- if @league.creator == current_user
+  = button_to "Lock league and begin drafting", league_path(@league), class: "btn btn-danger", params: { "league[locked]" => true }, method: :put

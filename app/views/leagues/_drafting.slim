@@ -1,0 +1,36 @@
+.drafting
+  .drafting-instructions
+    h3 Drafting Instructions
+    ul
+      li Players take turns drafting in a serpentine order. For example, with 4 players, the order will be 1, 2, 3, 4, 4, 3, 2, 1, 1, 2, etc.
+      li You can only draft an actor once.
+      li Drafters can be drafted twice per league. The remaining slots for each actor are displayed next to their name.
+      li Once every team has four actors, drafting ends and teams can start to earn points.
+
+  h4 Current drafter:
+  .drafting-order
+    - @league.members_in_drafting_order.map do |user|
+      span class=(@league.current_drafter == user ? 'current-drafter' : 'waiting-drafter' )
+        = user.username
+
+  - if @league.current_drafter == current_user
+    - drafting_team = @league.teams.find_by_owner_id(@league.current_drafter)
+    - if drafting_team.nil?
+      = render partial: 'teams/new'
+    - else
+      h2.draft-prompt = "Select an actor!"
+      form.drafting-form action=team_memberships_path method="post"
+        input type="hidden" name="drafting[league_id]" value=@league.id
+        input type="hidden" name="authenticity_token" value=form_authenticity_token
+        - @league.available_actors.each do |actor, slots|
+          .actor-option
+            input [
+            type="radio"
+            name="drafting[actor_id]"
+            value=actor.id
+            id="actor_#{actor.id}"
+            disabled=(slots==0 || drafting_team.members.include?(actor)) ]
+            label for="actor_#{actor.id}" = image_tag(actor.image_url)
+            .actor-name = "#{actor.name} (#{slots})"
+
+        input.btn.btn-default type="submit"

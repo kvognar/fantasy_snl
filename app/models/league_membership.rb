@@ -7,11 +7,11 @@
 #  league_id  :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
-#  ord        :integer
 #
 
 class LeagueMembership < ActiveRecord::Base
   validates :member, :league, presence: true
+  validates :member_id, uniqueness: { scope: :league_id, message: "has already joined this league!" }
   validate :league_is_unlocked, on: :create
   validate :league_is_not_full, on: :create
 
@@ -33,7 +33,7 @@ class LeagueMembership < ActiveRecord::Base
 
   def league_is_not_full
     if league.members.size >= 6
-      errors[:league] << "is full"
+      errors[:league] << "is full (max 6)"
     end
   end
 

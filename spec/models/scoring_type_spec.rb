@@ -10,7 +10,11 @@
 #  symbol      :string(255)
 #
 
-class ScoringType < ActiveRecord::Base
-  validates :description, :value, :symbol, presence: true
-  has_many :scorings
+require 'spec_helper'
+
+describe ScoringType do
+  it { should validate_presence_of :description }
+  it { should validate_presence_of :value }
+  it { should validate_presence_of :symbol }
+  it { should have_many :scorings }
 end

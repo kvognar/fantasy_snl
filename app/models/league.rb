@@ -2,15 +2,17 @@
 #
 # Table name: leagues
 #
-#  id                 :integer          not null, primary key
-#  name               :string(255)      not null
-#  creator_id         :integer          not null
-#  created_at         :datetime
-#  updated_at         :datetime
-#  locked             :boolean          default(FALSE), not null
-#  drafting           :boolean          default(FALSE), not null
-#  drafting_direction :integer          default(1), not null
-#  current_drafter_id :integer          default(1), not null
+#  id                    :integer          not null, primary key
+#  name                  :string(255)      not null
+#  creator_id            :integer          not null
+#  created_at            :datetime
+#  updated_at            :datetime
+#  locked                :boolean          default(FALSE), not null
+#  drafting              :boolean          default(FALSE), not null
+#  drafting_direction    :integer          default(0), not null
+#  current_drafter_index :integer          default(1), not null
+#  invite_token          :string(255)
+#  drafting_order        :text             default([]), is an Array
 #
 
 class League < ActiveRecord::Base
@@ -29,51 +31,47 @@ class League < ActiveRecord::Base
   has_many :draftings, through: :teams, source: :team_memberships
 
   after_create :add_creator_to_league
+  before_validation :set_invite_token, on: :create
+  before_validation :initialize_draft, if: :league_has_been_locked
 
   def available_actors
     #each actor can be drafted twice per league
-    result = {}
-    Actor.all.each do |actor|
-      result[actor.id] = 2
-    end
+    result = Hash[Actor.all.map { |actor| [actor, 2] }]
 
     draftings.each do |drafting|
-      result[drafting.actor_id] -= 1
+      result[drafting.actor] -= 1
     end
     result
 
   end
 
-  def draftings_by_actor
-    result = {}
-    Actor.all.each do |actor|
-      result[actor.id] = 0
-    end
-
-    draftings.each do |drafting|
-      result[drafting.actor_id] += 1
-    end
-    result
+  def current_drafter
+    members.find(drafting_order[current_drafter_index])
   end
 
-  def lock
-    self.locked = true
-    self.save!
-    initialize_draft
+  def members_in_drafting_order
+    drafting_order.map { |i| User.find(i) }
   end
 
-  def unlock
-    self.locked = false
-    self.save!
-  end
 
   def next_drafter
-    self.current_drafter_id += self.drafting_direction
-    if self.drafting_drection == 0 || self.drafting_direction > self.members.size
+    self.current_drafter_index += self.drafting_direction
+    if self.current_drafter_index == -1 || self.current_drafter_index == self.members.size
       self.drafting_direction *= -1
-      self.current_drafter_id += self.drafting_direction
+      self.current_drafter_index += self.drafting_direction
     end
     self.save!
+    end_drafting_if_finished
+  end
+
+  def end_drafting_if_finished
+    if drafting_team.present? && drafting_team.members.size == 4
+      self.update_attributes(drafting: false)
+    end
+  end
+
+  def drafting_team
+    Team.find_by(owner: current_drafter, league_id: self.id)
   end
 
   private
@@ -84,17 +82,17 @@ class League < ActiveRecord::Base
 
   def initialize_draft
     self.drafting = true
-    self.draft_order = 1
-    self.save!
-
-    initialize_draft_order
+    self.drafting_direction = 1
+    self.current_drafter_index = 0
+    self.drafting_order = self.member_ids.shuffle
   end
 
-  def initialize_draft_order
-    ords = (1..members.size).to_a.shuffle
-    league_memberships.each do |membership|
-      membership.update_attributes(ord: ords.pop)
-    end
+  def league_has_been_locked
+    self.changed.include?("locked") && self.locked
+  end
+
+  def set_invite_token
+    self.invite_token = SecureRandom::urlsafe_base64
   end
 
 end
