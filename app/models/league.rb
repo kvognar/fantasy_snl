@@ -61,7 +61,7 @@ class League < ActiveRecord::Base
   end
 
   def end_drafting_if_finished
-    if Team.find_by(owner: current_drafter, league_id: self.id).members.size == 4
+    if drafting_team.present? && drafting_team.members.size == 4
       self.update_attributes(drafting: false)
     end
   end
