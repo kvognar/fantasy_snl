@@ -49,6 +49,10 @@ class League < ActiveRecord::Base
     members.find(drafting_order[current_drafter_index])
   end
 
+  def members_in_drafting_order
+    drafting_order.map { |i| User.find(i) }
+  end
+
 
   def next_drafter
     self.current_drafter_index += self.drafting_direction
@@ -64,6 +68,10 @@ class League < ActiveRecord::Base
     if drafting_team.present? && drafting_team.members.size == 4
       self.update_attributes(drafting: false)
     end
+  end
+
+  def drafting_team
+    Team.find_by(owner: current_drafter, league_id: self.id)
   end
 
   private

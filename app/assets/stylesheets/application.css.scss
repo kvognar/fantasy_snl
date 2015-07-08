@@ -138,4 +138,16 @@
       }
     }
   }
+
+  .drafting-order {
+    span {
+      padding: 0 1rem;
+    }
+    .current-drafter {
+      font-weight: bold;
+    }
+    .waiting-drafter {
+      font-weight: lighter;
+    }
+  }
 }

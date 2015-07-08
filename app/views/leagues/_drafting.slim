@@ -1,5 +1,17 @@
 .drafting
-  = "The current drafter is #{ @league.current_drafter.username }!"
+  .drafting-instructions
+    h3 Drafting Instructions
+    ul
+      li Players take turns drafting in a serpentine order. For example, with 4 players, the order will be 1, 2, 3, 4, 4, 3, 2, 1, 1, 2, etc.
+      li You can only draft an actor once.
+      li Drafters can be drafted twice per league. The remaining slots for each actor are displayed next to their name.
+      li Once every team has four actors, drafting ends and teams can start to earn points.
+
+  h4 Current drafter:
+  .drafting-order
+    - @league.members_in_drafting_order.map do |user|
+      span class=(@league.current_drafter == user ? 'current-drafter' : 'waiting-drafter' )
+        = user.username
 
   - if @league.current_drafter == current_user
     - drafting_team = @league.teams.find_by_owner_id(@league.current_drafter)
