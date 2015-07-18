@@ -8,7 +8,8 @@ class LeagueMembershipsController < ApplicationController
       if membership.save
         flash[:success] = "Welcome! You have joined #{@league.name}"
       else
-        flash[:danger] = membership.errors.full_messages.join("; ")
+        flash[:danger] = "Whoops. You can't join this league."
+        flash[:errors] = membership.errors.full_messages
       end
     else
       flash[:danger] = "You aren't invited to this league!"

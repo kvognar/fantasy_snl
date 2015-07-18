@@ -14,7 +14,8 @@ class UsersController < ApplicationController
         if current_user.update_attributes(password: password_params[:new_password])
           flash[:success] = "Password changed!"
         else
-          flash.now[:danger] = current_user.errors.full_messages.join('; ')
+          flash.now[:danger] = "Password could not be changed."
+          flash.now[:errors] = current_user.errors.full_messages
         end
       else
         flash.now[:danger] = "Your passwords didn't match :("

@@ -1,4 +1,9 @@
 .notice-container
-  - flash.each do |key, value|
-
-    div class="alert alert-#{key}" role="alert" = value
+  - flash.each do |title, detail|
+    - next if title == 'errors'
+    div class="alert alert-#{title}" role="alert"
+      = detail
+      - if title == 'danger' && flash[:errors]
+        ul
+          - flash[:errors].each do |error|
+            li = error

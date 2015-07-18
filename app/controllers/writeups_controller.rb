@@ -15,6 +15,7 @@ class WriteupsController < ApplicationController
     if @writeup.save
       redirect_to @writeup.episode
     else
+      flash[:danger] = "The writeup could not be saved."
       flash[:errors] = @writeup.errors.full_messages
       render :new
     end

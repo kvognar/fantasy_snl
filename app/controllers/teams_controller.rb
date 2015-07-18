@@ -15,7 +15,8 @@ class TeamsController < ApplicationController
       if @team.save
         flash[:success] = "Team created. Now add its first member!"
       else
-        flash[:danger] = @team.errors.full_messages.join("; ")
+        flash[:danger] = "Team could not be created."
+        flash[:errors] = @team.errors.full_messages
       end
     else
       flash[:danger] = "Someone is being tricksy."
