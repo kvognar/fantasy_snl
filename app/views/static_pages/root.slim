@@ -1,6 +1,6 @@
 h1.welcome Live from New York, it's Fantasy Night!
 
-- if signed_in?
+- if signed_in? && @team.present?
   .team_summary
     = "#{link_to h(@team.name), team_path(@team)}: #{@team.score} points".html_safe
     = render partial: 'teams/cast', locals: { members: @team.members }
