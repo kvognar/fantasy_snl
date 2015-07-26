@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.password != params[:user][:confirm_password]
-      flash[:info] = "Your passwords did not match!"
+      flash.now[:info] = "Your passwords did not match!"
       render :new
     else
       if @user.save
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
         sign_in!(@user)
         redirect_to root_url
       else
-        flash[:danger] = "We could not create your account."
-        flash[:errors] = @user.errors.full_messages
+        flash.now[:danger] = "We could not create your account."
+        flash.now[:errors] = @user.errors.full_messages
         render :new
       end
     end
