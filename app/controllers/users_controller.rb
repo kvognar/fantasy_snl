@@ -4,6 +4,28 @@ class UsersController < ApplicationController
     @user = User.includes(:leagues, teams: {members: {scorings: :scoring_type}}).find(params[:id])
   end
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.password != params[:user][:confirm_password]
+      flash[:info] = "Your passwords did not match!"
+      render :new
+    else
+      if @user.save
+        flash[:success] = "Welcome to Fantasy SNL!"
+        sign_in!(@user)
+        redirect_to root_url
+      else
+        flash[:danger] = "We could not create your account."
+        flash[:errors] = @user.errors.full_messages
+        render :new
+      end
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -36,5 +58,9 @@ class UsersController < ApplicationController
 
   def password_params
     params.require(:user).permit(:old_password, :new_password, :confirm_password)
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :password)
   end
 end

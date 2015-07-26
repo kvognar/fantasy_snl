@@ -8,7 +8,8 @@ nav.navbar-inverse role="navigation"
         -if signed_in?
           a href=user_path(current_user) =current_user.username
         -else
-          a href=new_session_path Sign In
+          li = link_to "Sign Up", new_user_path
+          li = link_to "Sign In", new_session_path
       -if signed_in?
         -if current_user.is_admin?
           li =link_to "New Episode", new_episode_path

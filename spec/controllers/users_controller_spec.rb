@@ -15,6 +15,36 @@ describe UsersController do
     end
   end
 
+  describe '#new' do
+    it 'loads the new user page' do
+      get :new
+      expect(assigns(:user).username).to be_blank
+      response.should render_template('new')
+    end
+  end
+
+  describe '#create' do
+    it 'creates a new user and sends them to the home page' do
+      expect{
+        post :create, user: { username: 'The Rubin', password: 'swizzlesticks', confirm_password: 'swizzlesticks' }
+      }.to change{ User.count }.by(1)
+      expect(session[:token]).to eq assigns(:user).session_token
+      response.should redirect_to root_url
+    end
+
+    context 'failures' do
+      it 'does not create a user if the passwords do not match' do
+        expect{
+          post :create, user: { username: 'The Rubin', password: 'swizzlesticks', confirm_password: 'bread sticks' }
+        }.to_not change{ User.count }
+
+        expect(flash[:info]).to eq ("Your passwords did not match!")
+        response.should render_template('new')
+
+      end
+    end
+  end
+
   describe '#edit' do
     it "loads the user edit page" do
       get :edit, id: @user.id
