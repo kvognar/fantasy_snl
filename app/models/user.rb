@@ -9,6 +9,7 @@
 #  password_hash :string(255)      not null
 #  session_token :string(255)      not null
 #  is_admin      :boolean          default(FALSE), not null
+#  email         :string(255)
 #
 
 class User < ActiveRecord::Base

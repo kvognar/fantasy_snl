@@ -139,8 +139,10 @@ ActiveRecord::Schema.define(version: 20150928235629) do
     t.string   "password_hash",                 null: false
     t.string   "session_token",                 null: false
     t.boolean  "is_admin",      default: false, null: false
+    t.string   "email"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "writeups", force: true do |t|
