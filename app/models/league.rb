@@ -33,6 +33,7 @@ class League < ActiveRecord::Base
   has_many :draftings, through: :teams, source: :team_memberships
 
   after_create :add_creator_to_league
+  before_create :ensure_season
   before_validation :set_invite_token, on: :create
   before_validation :initialize_draft, if: :league_has_been_locked
 
@@ -80,6 +81,10 @@ class League < ActiveRecord::Base
 
   def add_creator_to_league
     self.members << self.creator
+  end
+
+  def ensure_season
+    self.season_id = Season.active.last.id unless self.season && self.season.is_active?
   end
 
   def initialize_draft
