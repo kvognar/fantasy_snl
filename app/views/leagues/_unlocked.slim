@@ -7,4 +7,6 @@
     = button_to "Join", league_memberships_path, class: "btn btn-info", params: {invite_token: params[:invite_token], league_id: @league.id}
 
 - if @league.creator == current_user
-  = button_to "Lock league and begin drafting", league_path(@league), class: "btn btn-danger", params: { "league[locked]" => true }, method: :put
+  = form_for @league do |f|
+    = f.hidden_field :locked, value: true
+    = f.submit class: "btn btn-danger", value: "Lock league and begin drafting", data: { confirm: "Are you sure? This will start the drafting process and prevent anyone else from joining." }
