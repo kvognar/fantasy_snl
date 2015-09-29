@@ -38,7 +38,7 @@ class League < ActiveRecord::Base
 
   def available_actors
     #each actor can be drafted twice per league
-    result = Hash[Actor.all.map { |actor| [actor, 2] }]
+    result = Hash[Actor.by_season(self.season).map { |actor| [actor, 2] }]
 
     draftings.each do |drafting|
       result[drafting.actor] -= 1
