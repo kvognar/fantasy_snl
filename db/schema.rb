@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617163153) do
+ActiveRecord::Schema.define(version: 20150928235629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,16 +25,27 @@ ActiveRecord::Schema.define(version: 20150617163153) do
 
   add_index "actors", ["name"], name: "index_actors_on_name", using: :btree
 
+  create_table "cast_memberships", force: true do |t|
+    t.integer  "actor_id",   null: false
+    t.integer  "season_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cast_memberships", ["actor_id", "season_id"], name: "index_cast_memberships_on_actor_id_and_season_id", unique: true, using: :btree
+
   create_table "episodes", force: true do |t|
-    t.date     "air_date",       null: false
+    t.date     "air_date",                   null: false
     t.integer  "episode_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "host",           null: false
+    t.string   "host",                       null: false
+    t.integer  "season_id",      default: 1, null: false
   end
 
   add_index "episodes", ["air_date"], name: "index_episodes_on_air_date", using: :btree
   add_index "episodes", ["host"], name: "index_episodes_on_host", using: :btree
+  add_index "episodes", ["season_id"], name: "index_episodes_on_season_id", using: :btree
 
   create_table "league_memberships", force: true do |t|
     t.integer  "member_id",  null: false
@@ -58,10 +69,12 @@ ActiveRecord::Schema.define(version: 20150617163153) do
     t.integer  "current_drafter_index", default: 1,     null: false
     t.string   "invite_token"
     t.text     "drafting_order",        default: [],                 array: true
+    t.integer  "season_id",             default: 1,     null: false
   end
 
   add_index "leagues", ["creator_id"], name: "index_leagues_on_creator_id", using: :btree
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
+  add_index "leagues", ["season_id"], name: "index_leagues_on_season_id", using: :btree
 
   create_table "scoring_types", force: true do |t|
     t.string   "description", null: false
@@ -86,6 +99,14 @@ ActiveRecord::Schema.define(version: 20150617163153) do
   add_index "scorings", ["episode_id"], name: "index_scorings_on_episode_id", using: :btree
   add_index "scorings", ["scoring_type_id"], name: "index_scorings_on_scoring_type_id", using: :btree
   add_index "scorings", ["team_id"], name: "index_scorings_on_team_id", using: :btree
+
+  create_table "seasons", force: true do |t|
+    t.integer  "year",                          null: false
+    t.integer  "season_number",                 null: false
+    t.boolean  "is_active",     default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "team_memberships", force: true do |t|
     t.integer  "actor_id",   null: false

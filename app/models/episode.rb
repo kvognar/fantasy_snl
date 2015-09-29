@@ -8,12 +8,14 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  host           :string(255)      not null
+#  season_id      :integer          default(1), not null
 #
 
 class Episode < ActiveRecord::Base
   has_many :scorings, dependent: :destroy
   has_one :writeup
-  validates :air_date, :host, presence: true
+  belongs_to :season
+  validates :air_date, :host, :season, presence: true
   validates :air_date, uniqueness: true
 
   default_scope { order(air_date: :asc) }

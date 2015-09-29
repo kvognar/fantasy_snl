@@ -13,10 +13,11 @@
 #  current_drafter_index :integer          default(1), not null
 #  invite_token          :string(255)
 #  drafting_order        :text             default([]), is an Array
+#  season_id             :integer          default(1), not null
 #
 
 class League < ActiveRecord::Base
-  validates :name, :creator_id, presence: true
+  validates :name, :creator_id, :season_id, presence: true
 
   belongs_to(
     :creator,
@@ -24,6 +25,7 @@ class League < ActiveRecord::Base
     foreign_key: :creator_id,
     primary_key: :id
   )
+  belongs_to :season
 
   has_many :league_memberships, dependent: :destroy
   has_many :members, through: :league_memberships, source: :member

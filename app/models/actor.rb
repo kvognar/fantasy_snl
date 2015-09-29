@@ -13,6 +13,8 @@ class Actor < ActiveRecord::Base
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships, source: :team
   has_many :scorings, dependent: :destroy
+  has_many :cast_memberships
+  has_many :seasons, through: :cast_memberships, source: :season
 
   validates :name, presence: true, uniqueness: true
 
