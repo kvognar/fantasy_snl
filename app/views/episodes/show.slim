@@ -5,6 +5,7 @@
     = link_to "Edit writeup", edit_writeup_url(@episode.writeup)
 
 h1 = @episode.host
+h4 = "#{@episode.air_date} (Season #{@episode.season.season_number})"
 
 -unless @episode.writeup.nil?
   .writeup

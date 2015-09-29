@@ -11,6 +11,10 @@ form.new-episode action= "#{episodes_path}" method= "post"
       label for= "host" Host
       input#host.form-control type= "text" name= "episode[host]"
 
+    .col-md-3
+      label for= "season_id" Season
+      = select_tag 'season_id', options_from_collection_for_select(@seasons, 'id', 'season_number', @seasons.last.id), class: 'form-control', name: 'episode[season_id]'
+
   - @actors.each do |actor|
     .actor-score-input
       .actor-score-header

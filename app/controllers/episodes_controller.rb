@@ -2,6 +2,7 @@ class EpisodesController < ApplicationController
   def new
     @actors = Actor.all
     @scoring_types = ScoringType.all
+    @seasons = Season.all
   end
 
   def create
@@ -35,7 +36,7 @@ class EpisodesController < ApplicationController
   private
 
   def episode_params
-    params.require(:episode).permit(:air_date, :host)
+    params.require(:episode).permit(:air_date, :host, :season_id)
   end
 
   def score_params

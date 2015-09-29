@@ -3,5 +3,5 @@ h1.page-header Create a league
 form.league-form action=leagues_url method="post"
   input type="hidden" value= form_authenticity_token name="authenticity_token"
   input type="hidden" name="_method" value="post"
-  input.form-control type="text" name="league[name]" placeholder="Give it a name." value=@league.name
-  input.btn.btn-default.btn-lg type="submit" Create
+  input.form-control.league-name type="text" name="league[name]" placeholder="Give it a name." value=@league.name
+  input.btn.btn-default.btn-lg type="submit" value="Create"
