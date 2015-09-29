@@ -13,6 +13,7 @@
 #  current_drafter_index :integer          default(1), not null
 #  invite_token          :string(255)
 #  drafting_order        :text             default([]), is an Array
+#  season_id             :integer          default(1), not null
 #
 
 FactoryGirl.define do
@@ -21,6 +22,7 @@ FactoryGirl.define do
       "league_#{n}"
     end
     association :creator, factory: :user
+    season_id 1
 
     factory :drafting_league do
 

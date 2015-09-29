@@ -4,5 +4,6 @@ FactoryGirl.define do
       (n+1).years.from_now
     end
     host "The Rubin"
+    season
   end
 end

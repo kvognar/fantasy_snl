@@ -13,14 +13,16 @@
 #  current_drafter_index :integer          default(1), not null
 #  invite_token          :string(255)
 #  drafting_order        :text             default([]), is an Array
+#  season_id             :integer          default(1), not null
 #
 
 require 'spec_helper'
 
 describe League do
   before :each do
-    @league = create(:league)
-    @drafting_league = create(:drafting_league)
+    @season = create(:season)
+    @league = create(:league, season: @season)
+    @drafting_league = create(:drafting_league, season: @season)
   end
 
   it { should have_many :league_memberships }
@@ -32,6 +34,7 @@ describe League do
   describe '#available_actors' do
     it 'returns a hash of the remaining drafting slots' do
       2.times { create(:actor) }
+      Actor.all.each { |actor| actor.seasons << @season }
       expect(@drafting_league.available_actors).to eq ({
                                            Actor.first => 2,
                                            Actor.last => 2
@@ -49,6 +52,8 @@ describe League do
   describe '#current_drafter' do
     it 'selects a league member from the drafting_order array' do
       create(:actor)
+      Actor.all.each { |actor| actor.seasons << @season }
+
       @drafting_league.drafting_order = @drafting_league.member_ids.sort
       expect(@drafting_league.current_drafter).to eq(User.find(@drafting_league.member_ids.first))
       @drafting_league.current_drafter
