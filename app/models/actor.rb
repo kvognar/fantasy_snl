@@ -18,8 +18,15 @@ class Actor < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+  scope :active, -> { joins(:seasons).where(seasons: { is_active: true } ) }
+  scope :by_season, ->(season) { joins(:seasons).where(seasons: { id: season.id } ) }
+
   def score
     self.scorings.canonical.includes(:scoring_type).sum(:value)
+  end
+
+  def score_by_season(season_id)
+    self.scorings.canonical.includes(:episode, :scoring_type).where(episodes: { season_id: season_id } ).sum(:value)
   end
 
   def score_by_episode(episode_id)
