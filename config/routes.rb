@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   root to: 'static_pages#root'
+  get 'faq', to: 'static_pages#faq'
 end

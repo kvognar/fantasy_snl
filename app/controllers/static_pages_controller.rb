@@ -8,4 +8,8 @@ class StaticPagesController < ApplicationController
     @actors = Actor.all
     @episodes = Episode.all
   end
+
+  def faq
+    render :faq
+  end
 end

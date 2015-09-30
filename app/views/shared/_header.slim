@@ -5,6 +5,8 @@ nav.navbar-inverse role="navigation"
 
     ul.nav.navbar-nav.navbar-right
       li
+        = link_to "FAQ", faq_path
+      li
         -if signed_in?
           a href=user_path(current_user) =current_user.username
         -else
