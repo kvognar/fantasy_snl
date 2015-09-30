@@ -22,7 +22,7 @@ FactoryGirl.define do
       "league_#{n}"
     end
     association :creator, factory: :user
-    season_id 1
+    season
 
     factory :drafting_league do
 
@@ -46,6 +46,7 @@ FactoryGirl.define do
           team = league.reload.current_drafter.teams.first
           team.draft(create(:actor))
         end
+        league.update!(drafting: false)
       end
     end
 

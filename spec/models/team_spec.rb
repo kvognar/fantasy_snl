@@ -26,11 +26,16 @@ describe Team do
 
   describe '#score' do
     it 'should sum the values of the scorings of all its members' do
-      team = create(:full_league).teams.first
+      league = create(:full_league)
+      team = league.teams.first
+      season = league.season
+      episode = create(:episode, season: season)
+      Actor.all.each { |actor| actor.seasons << league.season}
       scoring_type = create(:scoring_type, value: 2)
       team.members.each do |actor|
-        create(:scoring, scoring_type: scoring_type, actor: actor)
+        episode.scorings.create(scoring_type: scoring_type, actor: actor)
       end
+      # binding.pry
       expect(team.score).to eq 8
     end
   end

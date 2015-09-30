@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :season do
-    is_active false
+    is_active true
     sequence :year do |n|
       1970 + n
     end
