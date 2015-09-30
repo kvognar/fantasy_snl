@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         flash[:success] = "Welcome to Fantasy SNL!"
+        UserMailer.welcome_email(@user).deliver
         sign_in!(@user)
         redirect_to root_url
       else
@@ -61,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :email)
   end
 end

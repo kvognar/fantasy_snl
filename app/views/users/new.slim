@@ -2,10 +2,12 @@ h1.page-header Sign Up
 
 form.sign-in-form action=users_path method="post"
   input type="hidden" name="authenticity_token" value=form_authenticity_token
-  /input type="hidden" name="_method" value="put"
 
   label for="user-username" Username
   input.form-control#user-username name="user[username]" value=@user.username
+
+  label for="user-email" Email
+  input.form-control#user-email name="user[email]" value=@user.email
 
   label for="user-old-password" Password
   input.form-control#user-password name="user[password]" type="password"
