@@ -8,6 +8,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  host           :string(255)      not null
+#  season_id      :integer          default(1), not null
 #
 
 require 'spec_helper'

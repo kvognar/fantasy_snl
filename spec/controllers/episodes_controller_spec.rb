@@ -3,6 +3,7 @@ require 'spec_helper'
 describe EpisodesController do
 
   before do
+    @season = create(:season)
     @actors = [1, 2, 3].map { create(:actor) }
     @scoring_types = [1, 2, 3].map { |i| create(:scoring_type, value: i) }
   end
@@ -21,7 +22,8 @@ describe EpisodesController do
       post(:create,
            episode: {
                air_date: 1.day.ago,
-               host: 'The Rubin'
+               host: 'The Rubin',
+               season_id: @season.id
                   },
            scores: {
                actors: {

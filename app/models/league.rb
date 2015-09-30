@@ -13,10 +13,11 @@
 #  current_drafter_index :integer          default(1), not null
 #  invite_token          :string(255)
 #  drafting_order        :text             default([]), is an Array
+#  season_id             :integer          default(1), not null
 #
 
 class League < ActiveRecord::Base
-  validates :name, :creator_id, presence: true
+  validates :name, :creator_id, :season_id, presence: true
 
   belongs_to(
     :creator,
@@ -24,6 +25,7 @@ class League < ActiveRecord::Base
     foreign_key: :creator_id,
     primary_key: :id
   )
+  belongs_to :season
 
   has_many :league_memberships, dependent: :destroy
   has_many :members, through: :league_memberships, source: :member
@@ -31,12 +33,13 @@ class League < ActiveRecord::Base
   has_many :draftings, through: :teams, source: :team_memberships
 
   after_create :add_creator_to_league
+  before_create :ensure_season
   before_validation :set_invite_token, on: :create
   before_validation :initialize_draft, if: :league_has_been_locked
 
   def available_actors
     #each actor can be drafted twice per league
-    result = Hash[Actor.all.map { |actor| [actor, 2] }]
+    result = Hash[Actor.by_season(self.season).map { |actor| [actor, 2] }]
 
     draftings.each do |drafting|
       result[drafting.actor] -= 1
@@ -78,6 +81,10 @@ class League < ActiveRecord::Base
 
   def add_creator_to_league
     self.members << self.creator
+  end
+
+  def ensure_season
+    self.season_id = Season.active.last.id unless self.season && self.season.is_active?
   end
 
   def initialize_draft

@@ -29,6 +29,9 @@ class Team < ActiveRecord::Base
   has_many :members, through: :team_memberships, source: :actor
   has_many :scorings, dependent: :destroy
 
+  scope :by_season, -> (season_id) { includes(:league).where(leagues: { season_id: season_id } ) }
+  scope :active, -> { includes(:league).where(leagues: { drafting: false } ) }
+
   def draft(actor)
     raise "team is full" if memberships_count >= 4
     self.members << actor

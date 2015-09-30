@@ -23,6 +23,7 @@ class Scoring < ActiveRecord::Base
   belongs_to :team
   belongs_to :canonical_scoring, class_name: 'Scoring', foreign_key: :canonical_id
   has_many :dependent_scorings, class_name: 'Scoring', foreign_key: :canonical_id, dependent: :destroy
+  has_one :season, through: :episode
 
   delegate :value, to: :scoring_type
 
@@ -31,7 +32,7 @@ class Scoring < ActiveRecord::Base
   private
 
   def allot_scorings_to_teams
-    self.actor.teams.each do |team|
+    self.actor.teams.by_season(self.season).active.each do |team|
       team.scorings << Scoring.new(
           actor: self.actor,
           scoring_type: self.scoring_type,

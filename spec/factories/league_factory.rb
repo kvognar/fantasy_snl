@@ -13,6 +13,7 @@
 #  current_drafter_index :integer          default(1), not null
 #  invite_token          :string(255)
 #  drafting_order        :text             default([]), is an Array
+#  season_id             :integer          default(1), not null
 #
 
 FactoryGirl.define do
@@ -21,6 +22,7 @@ FactoryGirl.define do
       "league_#{n}"
     end
     association :creator, factory: :user
+    season
 
     factory :drafting_league do
 
@@ -44,6 +46,7 @@ FactoryGirl.define do
           team = league.reload.current_drafter.teams.first
           team.draft(create(:actor))
         end
+        league.update!(drafting: false)
       end
     end
 
