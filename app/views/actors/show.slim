@@ -10,5 +10,5 @@
       h4.episode-host = "#{episode.host} (#{episode.air_date})"
       = render partial: "scorings/breakdown",
           locals: { scoring_types: @scoring_types,
-          scorings: @actor.scorings.canonical.select { |s| s.episode == episode },
-          total: @actor.score_by_episode(episode.id) }
+          scorings: @scorings_by_episode_and_scoring_type[episode.id],
+          total: @scores_by_episode.fetch(episode.id, 0)}

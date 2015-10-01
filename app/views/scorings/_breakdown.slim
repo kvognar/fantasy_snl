@@ -5,5 +5,7 @@ table.scoring_breakdown
     td class="scoring_total" title="Total" Total
   tr.scores
     -scoring_types.each do |scoring_type|
-      td = scorings.select{ |s| s.scoring_type == scoring_type }.map{ |s| s.value.to_i }.inject(:+)
+      td
+        - if scorings && scorings[scoring_type.id]
+          = scorings[scoring_type.id].map { |s| s.value }.inject(:+)
     td = total
