@@ -46,6 +46,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
 end
 
 group :development, :test do
