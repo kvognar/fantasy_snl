@@ -1,12 +1,17 @@
 class TeamsController < ApplicationController
 
+  include ScoreBreakdown
+
   before_action :require_signed_in!, only: :create
 
   def show
-    @team = Team.includes(members: { scorings: [:scoring_type, :episode] }).find(params[:id])
+    @team = Team.includes(:league, :members).find(params[:id])
     @scoring_types = ScoringType.all
-    @scorings = @team.scorings
-    @episodes = Episode.all
+    @scorings = @team.scorings.includes(:scoring_type)
+    @episodes = Episode.where(season_id: @team.league.season_id)
+    @scores_by_episode = scores_by_episode
+    @scorings_by_episode_and_scoring_type = scorings_by_episode_and_scoring_type
+
   end
 
   def create

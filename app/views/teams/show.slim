@@ -5,4 +5,7 @@ h3 = "#{@team.score} points"
 
 - @episodes.each do |episode|
   h3 = "#{episode.host} (#{episode.air_date})"
-  = render partial: 'scorings/breakdown', locals: { scoring_types: @scoring_types, scorings: episode_scorings(episode), total: episode_total(episode) }
+  = render partial: 'scorings/breakdown',
+           locals: { scoring_types: @scoring_types,
+            scorings: @scorings_by_episode_and_scoring_type[episode.id],
+            total: @scores_by_episode.fetch(episode.id, 0) }

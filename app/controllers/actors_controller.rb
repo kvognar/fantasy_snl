@@ -1,6 +1,6 @@
 class ActorsController < ApplicationController
 
-  helper_method :scorings_by_episode_and_scoring_type
+  include ScoreBreakdown
 
   def show
     @actor = Actor.find(params[:id])
