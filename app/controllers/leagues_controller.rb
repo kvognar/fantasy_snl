@@ -4,7 +4,7 @@ class LeaguesController < ApplicationController
   before_action :require_league_ownership!, only: :update
 
   def show
-    @league = League.includes(teams: [:members, scorings: :scoring_type]).find(params[:id])
+    @league = League.includes(teams: [:members]).find(params[:id])
     @teams = @league.teams.sort { |a, b| b.score <=> a.score }
   end
 
