@@ -17,4 +17,4 @@ h4 = "#{@episode.air_date} (Season #{@episode.season.season_number})"
   ul.actors
     - @actors.each do |actor|
       li.actor-scores
-        = "#{actor.name}: #{actor.score_by_episode(@episode.id)}"
+        = "#{actor.name}: #{@scores_by_actor.fetch(actor.id, 0)}"

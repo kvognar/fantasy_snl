@@ -30,7 +30,11 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
-    @actors = Actor.all.includes(scorings: :scoring_type)
+    @actors = Actor.all
+    @scores_by_actor = @episode.scorings.canonical
+                           .includes(:scoring_type)
+                           .group(:actor_id)
+                           .sum(:value)
   end
 
   private
@@ -42,4 +46,5 @@ class EpisodesController < ApplicationController
   def score_params
     params.require(:scores).permit(actors: { scoring_types: [:count] } )
   end
+
 end
