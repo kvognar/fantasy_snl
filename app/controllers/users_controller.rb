@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.includes(:leagues, teams: {members: {scorings: :scoring_type}}).find(params[:id])
+    @user = User.includes(:leagues, teams: :members).find(params[:id])
   end
 
   def new
@@ -31,7 +31,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def update
+  def edit_password
+    @user = current_user
+  end
+
+  def edit_email
+    @user = current_user
+  end
+
+  def update_password
     if current_user.is_password?(password_params[:old_password])
       if password_params[:new_password] == password_params[:confirm_password]
         if current_user.update_attributes(password: password_params[:new_password])
@@ -51,7 +59,23 @@ class UsersController < ApplicationController
       redirect_to current_user
     else
       @user = current_user
-      render :edit
+      render :edit_password
+    end
+  end
+
+  def update_email
+    if current_user.update_attributes(email: user_params[:email])
+      flash[:success] = "Email changed!"
+    else
+      flash.now[:danger] = "Email could not be changed."
+      flash.now[:errors] = current_user.errors.full_messages
+    end
+
+    if flash[:success]
+      redirect_to current_user
+    else
+      @user = current_user
+      render :edit_email
     end
   end
 

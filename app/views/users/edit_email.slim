@@ -1,0 +1,10 @@
+h1.page-header Change email
+
+form.sign-in-form action=update_email_user_path(@user) method="post"
+  input type="hidden" name="authenticity_token" value=form_authenticity_token
+  input type="hidden" name="_method" value="put"
+
+  label for="user-email" email
+  input.form-control#user-email name="user[email]" type="text" value="#{@user.email}"
+
+  input.btn.btn-info type="submit"

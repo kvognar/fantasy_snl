@@ -7,4 +7,5 @@ h5 = "Member of #{@user.leagues.map{ |league| link_to league.name, league_path(l
     h5.team-score= "#{team.score} points"
 
 - if @user == current_user
-  = link_to "Change password", edit_user_path(@user)
+  = button_to "Change password", edit_password_user_path(@user), class: "btn btn-default", method: :get
+  = button_to "Change email", edit_email_user_path(@user), class: "btn btn-default", method: :get

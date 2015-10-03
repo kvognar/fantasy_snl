@@ -45,31 +45,31 @@ describe UsersController do
     end
   end
 
-  describe '#edit' do
-    it "loads the user edit page" do
-      get :edit, id: @user.id
+  describe '#edit_password' do
+    it "loads the password edit page" do
+      get :edit_password, id: @user.id
       expect(assigns(:user)).to eq(@user)
-      response.should render_template("edit")
+      response.should render_template("edit_password")
     end
   end
 
-  describe '#update' do
+  describe '#update_password' do
     it 'updates the user password' do
-      patch :update, id: 1, user: { old_password: "widdershins",
+      patch :update_password, id: 1, user: { old_password: "widdershins",
                              new_password: "winter winds",
                              confirm_password: "winter winds"
                             }
       expect(@user.reload.is_password?("winter winds")).to be_true
     end
     it 'does not update if the password is wrong' do
-      patch :update, id: 1, user: { old_password: "clockwise",
+      patch :update_password, id: 1, user: { old_password: "clockwise",
                                     new_password: "winter winds",
                                     confirm_password: "winter winds"
                                   }
       expect(@user.reload.is_password?("winter winds")).to be_false
     end
     it "does not update if the passwords confirm doesn't match" do
-      patch :update, id: 1, user: { old_password: "widdershins",
+      patch :update_password, id: 1, user: { old_password: "widdershins",
                                     new_password: "winter winds",
                                     confirm_password: "wilder winds"
                                   }
@@ -77,7 +77,7 @@ describe UsersController do
       expect(@user.is_password?("widdershins")).to be_true
     end
     it "requires a password of minimum length 6" do
-      patch :update, id: 1, user: { old_password: "widdershins",
+      patch :update_password, id: 1, user: { old_password: "widdershins",
                                     new_password: "winds",
                                     confirm_password: "winds"
                                   }
