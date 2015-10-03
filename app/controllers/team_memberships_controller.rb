@@ -4,7 +4,7 @@ class TeamMembershipsController < ApplicationController
   def create
     team = Team.find_by(owner_id: current_user.id, league_id: drafting_params[:league_id])
     team.draft(Actor.find(drafting_params[:actor_id]))
-    if team.league.drafting?
+    if team.league.drafting && team.league.current_drafter != current_user
       UserMailer.drafting_turn_email(team.league.current_drafter, team.league).deliver
     end
     redirect_to team.league

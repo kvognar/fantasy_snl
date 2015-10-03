@@ -29,7 +29,7 @@ class League < ActiveRecord::Base
 
   has_many :league_memberships, dependent: :destroy
   has_many :members, through: :league_memberships, source: :member
-  has_many :teams
+  has_many :teams, dependent: :destroy
   has_many :draftings, through: :teams, source: :team_memberships
 
   after_create :add_creator_to_league
@@ -92,6 +92,7 @@ class League < ActiveRecord::Base
     self.drafting_direction = 1
     self.current_drafter_index = 0
     self.drafting_order = self.member_ids.shuffle
+    UserMailer.drafting_turn_email(self.current_drafter, self).deliver
   end
 
   def league_has_been_locked
