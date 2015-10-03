@@ -18,5 +18,8 @@ FactoryGirl.define do
       "user_#{n}"
     end
     password "widdershins"
+    sequence :email do |n|
+      "winter_winds#{n}@poeticjustice.com"
+    end
   end
 end
