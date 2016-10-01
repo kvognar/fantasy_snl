@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
       @league = current_user.leagues.first
       @team = current_user.teams.first
     end
-    @actors = Actor.current
+    @actors = Actor.active
     @episodes = Episode.all
   end
 
