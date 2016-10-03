@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         flash[:success] = "Welcome to Fantasy SNL!"
-        UserMailer.welcome_email(@user).deliver
+        # UserMailer.welcome_email(@user).deliver
         sign_in!(@user)
         redirect_to root_url
       else

@@ -92,7 +92,7 @@ class League < ActiveRecord::Base
     self.drafting_direction = 1
     self.current_drafter_index = 0
     self.drafting_order = self.member_ids.shuffle
-    UserMailer.drafting_turn_email(self.current_drafter, self).deliver
+    # UserMailer.drafting_turn_email(self.current_drafter, self).deliver
   end
 
   def league_has_been_locked
