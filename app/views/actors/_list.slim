@@ -4,5 +4,5 @@
   ul.cast-list
     -@actors.each do |actor|
       a href=actor_path(actor)
-        = image_tag(actor.image_url)
+        = image_tag(actor.image_url, class: 'actor-thumbnail')
       /li= link_to actor.name, actor

@@ -85,11 +85,13 @@
   .cast-list-container {
     border-left: thin solid black;
     padding: 0 40px;
-    img {
-      width: 120px;
-      height: 120px;
-    }
+
   }
+}
+
+img.actor-thumbnail {
+  width: 120px;
+  height: 120px;
 }
 
 .welcome {

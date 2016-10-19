@@ -18,7 +18,7 @@ form.new-episode action= "#{episodes_path}" method= "post"
   - @actors.each do |actor|
     .actor-score-input
       .actor-score-header
-        = image_tag(actor.image_url)
+        = image_tag(actor.image_url, class: 'actor-thumbnail')
         span.name = actor.name
       .actor-scores.row
         - @scoring_types.each do |type|

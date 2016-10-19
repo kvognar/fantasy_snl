@@ -1,6 +1,6 @@
 #actor-profile
   h1
-    = image_tag(@actor.image_url, class: "actor-image")
+    = image_tag(@actor.image_url, class: "actor-thumbnail")
     = @actor.name
 
   h3= "Running score: #{@actor.score}"

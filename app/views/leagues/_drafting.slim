@@ -30,7 +30,7 @@
             value=actor.id
             id="actor_#{actor.id}"
             disabled=(slots==0 || drafting_team.members.include?(actor)) ]
-            label for="actor_#{actor.id}" = image_tag(actor.image_url)
+            label for="actor_#{actor.id}" = image_tag(actor.image_url, class: 'actor-thumbnail')
             .actor-name = "#{actor.name} (#{slots})"
 
         input.btn.btn-default type="submit"
